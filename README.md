@@ -1,8 +1,8 @@
-# `Plugin Name`
+# PrettyURLManager
 
 #### _Plugin for [Kanboard](https://github.com/fguillot/kanboard "Kanboard - Kanban Project Management Software")_
 
-`Brief intro`
+This simple tool extends the existing rewriting of browser URLs for your Kanboard application using this plugin. [URL Rewriting](https://docs.kanboard.org/v1/admin/url-rewriting/) must be correctly configured for this plugin to function properly.
 
 
 Features
