@@ -20,7 +20,7 @@ class Plugin extends Base
         // Extra Page - Routes
         //  - Example: $this->route->addRoute('/my/custom/route', 'MyController', 'show', 'PluginNameExampleStudlyCaps');
         //  - Must have the corresponding action in the matching controller
-        $this->route->addRoute('/ / ', ' ', ' ', 'PrettyURLManager');
+        $this->route->addRoute('/settings/url-manager', 'PrettyURLManagerController', 'show', 'PrettyURLManager');
     }
 
     public function onStartup()
