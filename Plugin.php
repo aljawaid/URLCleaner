@@ -1,6 +1,6 @@
 <?php
 
-namespace Kanboard\Plugin\PrettyURLManager;
+namespace Kanboard\Plugin\URLCleaner;
 
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
@@ -11,16 +11,16 @@ class Plugin extends Base
     {
         // CSS - Asset Hook
         //  - Keep filename lowercase
-        $this->hook->on('template:layout:css', array('template' => 'plugins/PrettyURLManager/Assets/css/prettyurl-manager.css'));
+        $this->hook->on('template:layout:css', array('template' => 'plugins/URLCleaner/Assets/css/url-cleaner.css'));
 
         // Views - Add Menu Item - Template Hook
         //  - Override name should start lowercase e.g. pluginNameExampleCamelCase
-        $this->template->hook->attach('template:config:sidebar', 'prettyURLManager:config/sidebar');
+        $this->template->hook->attach('template:config:sidebar', 'uRLCleaner:config/sidebar');
 
         // Extra Page - Routes
         //  - Example: $this->route->addRoute('/my/custom/route', 'MyController', 'show', 'PluginNameExampleStudlyCaps');
         //  - Must have the corresponding action in the matching controller
-        $this->route->addRoute('/settings/url-manager', 'PrettyURLManagerController', 'show', 'PrettyURLManager');
+        $this->route->addRoute('/settings/url-cleaner', 'URLCleanerController', 'show', 'URLCleaner');
     }
 
     public function onStartup()
@@ -32,7 +32,7 @@ class Plugin extends Base
     {
         // Plugin Name MUST be identical to namespace for Plugin Directory to detect updated versions
         // Do not translate the plugin name here
-        return 'PrettyURLManager';
+        return 'URLCleaner';
     }
 
     public function getPluginDescription()
@@ -62,6 +62,6 @@ class Plugin extends Base
 
     public function getPluginHomepage()
     {
-        return 'https://github.com/aljawaid/PrettyURLManager';
+        return 'https://github.com/aljawaid/URLCleaner';
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace Kanboard\Plugin\PrettyURLManager\Controller;
+namespace Kanboard\Plugin\URLCleaner\Controller;
 
 use Kanboard\Controller\BaseController;
 use Kanboard\Core\Plugin\Directory;
 
 /**
- * Plugin PrettyURLManager
- * Class PrettyURLManagerController
+ * Plugin URLCleaner
+ * Class URLCleanerController
  * @author aljawaid
  */
 
-class PrettyURLManagerController extends \Kanboard\Controller\PluginController
+class URLCleanerController extends \Kanboard\Controller\PluginController
 {
     /**
      * Display the Settings Page
@@ -25,8 +25,8 @@ class PrettyURLManagerController extends \Kanboard\Controller\PluginController
 
     public function show()
     {
-        $this->response->html($this->helper->layout->config('prettyURLManager:config/manager', array(
-            'title' => t('Pretty URL Manager'),
+        $this->response->html($this->helper->layout->config('uRLCleaner:config/url-cleaner', array(
+            'title' => t('URL Cleaner'),
         )));
     }
 }
