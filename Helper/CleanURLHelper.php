@@ -20,4 +20,15 @@ class CleanURLHelper extends Base
             ),
         );
     }
+
+    public function newPluginRoutes()
+    {
+        $routes = array(
+            // Default key for each will start from 0
+            array(
+                "before_route" => "?controller=Bigboard&action=index&plugin=Bigboard",
+                "after_route" => "/bigboard"
+            ),
+        );
+    }
 }
