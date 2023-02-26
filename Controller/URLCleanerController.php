@@ -26,7 +26,7 @@ class URLCleanerController extends \Kanboard\Controller\PluginController
     public function show()
     {
         $this->response->html($this->helper->layout->config('uRLCleaner:config/url-cleaner', array(
-            'title' => t('URL Cleaner'),
+            'title' => t('Settings') .' &#10562; '.t('URL Cleaner'),
         )));
     }
 }
