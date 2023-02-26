@@ -15,4 +15,18 @@
             <?php endif ?>
             </div>
         </fieldset>
+        <fieldset class="">
+            <legend>Activation</legend>
+            <form class="url-form" method="post" action="<?= $this->url->href('URLCleanerController', 'save', array('redirect' => 'show', 'plugin' => 'URLCleaner')) ?>" autocomplete="off">
+                <?= $this->form->csrf() ?>
+                <div class="url-radio-options">
+                    <?= $this->form->radio('clean-url-options', t('Enable Clean URLs'), 'enable', true, '', isset($values['clean-url-options']) && $values['clean-url-options'] == 'enable') ?>
+                    <?= $this->form->radio('clean-url-options', t('Disable Clean URLs'), 'disable', isset($values['clean-url-options']) && $values['clean-url-options'] == 'disable') ?>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-blue" title="<?= t('Saves changes') ?>"><?= t('Save Settings') ?></button>
+                </div>
+            </form>
+        </fieldset>
+    </fieldset>
 </div>
