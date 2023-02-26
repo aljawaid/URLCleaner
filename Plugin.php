@@ -22,6 +22,7 @@ class Plugin extends Base
         //  - Must have the corresponding action in the matching controller
         $this->route->addRoute('/settings/url-cleaner', 'URLCleanerController', 'show', 'URLCleaner');
 
+        if ($this->configModel->get('clean-url-options', '') == 'enable') {
             // CORE
             $this->route->addRoute('/project/:project_id/task/:task_id/move', 'TaskMovePositionController', 'show');
             $this->route->addRoute('/project/:project_id/overview/:search', 'ProjectOverviewController', 'show');
@@ -29,6 +30,8 @@ class Plugin extends Base
             $this->route->addRoute('/user/:user_id/notifications', 'WebNotificationController', 'show');
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
+        }
+
         // Helper
         //  - Example: $this->helper->register('helperClassNameCamelCase', '\Kanboard\Plugin\PluginNameExampleStudlyCaps\Helper\HelperNameExampleStudlyCaps');
         //  - Add each Helper in the 'use' section at the top of this file
