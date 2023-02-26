@@ -29,4 +29,23 @@ class URLCleanerController extends \Kanboard\Controller\PluginController
             'title' => t('Settings') .' &#10562; '.t('URL Cleaner'),
         )));
     }
+
+    /**
+     * Save settings
+     *
+     */
+    public function save()
+    {
+        $values =  $this->request->getValues();
+        $redirect = $this->request->getStringParam('redirect', 'application');
+
+        if ($this->configModel->save($values)) {
+            $this->languageModel->loadCurrentLanguage();
+            $this->flash->success(t('Settings saved successfully.'));
+        } else {
+            $this->flash->failure(t('Unable to save your settings.'));
+        }
+
+        $this->response->redirect($this->helper->url->to('URLCleanerController', $redirect, ['plugin' => 'URLCleaner']));
+    }
 }
