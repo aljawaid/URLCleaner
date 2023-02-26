@@ -42,7 +42,7 @@ class Plugin extends Base
 
     public function getPluginDescription()
     {
-        return t('This simple tool extends the existing rewriting of browser URLs for your Kanboard application using this plugin. URL Rewriting must be correctly configured for this plugin to function properly.
+        return t('This simple tool extends the rewriting of browser URLs for your Kanboard application. Sanitize those long URLs automatically creating neat pretty easy to remember bookmarks. This plugin extends URLs from the core and from plugins. URL Rewriting must be correctly configured for this plugin to function properly.
 ');
     }
 
