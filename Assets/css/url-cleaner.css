@@ -50,6 +50,40 @@
 
 .relative { position: relative; }
 
+.route-table thead > tr > th {
+    padding-left: 10px;
+    border: 1px solid var(--pp-grey);
+    border-bottom: 0;
+    background-color: #939393;
+    color: var(--pp-white);
+    font-weight: 600;
+}
+
+.route-table tbody > tr > td {
+    padding-left: 10px;
+    border: 1px solid var(--pp-grey);
+}
+
+.route-table > tbody > tr:not(:last-child) > td {
+    border-bottom: 0;
+}
+
+.route-table thead > tr > th.table-corner-tl {
+    border-top-left-radius: var(--border-radius-url-cleaner);
+}
+
+.route-table > tbody > tr:last-child > td.table-corner-bl:first-child {
+    border-bottom-left-radius: var(--border-radius-url-cleaner);
+}
+
+.route-table thead > tr > th.table-corner-tr {
+    border-top-right-radius: var(--border-radius-url-cleaner);
+}
+
+.route-table > tbody > tr:last-child > td.table-corner-br:last-child {
+    border-bottom-right-radius: var(--border-radius-url-cleaner);
+}
+
 .url-cleaner-page-margin {
     margin: var(--page-margin-url-cleaner);
 }
@@ -155,6 +189,10 @@
     content: url("data:image/svg+xml,%3Csvg class='bi bi-plugin' xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' fill='%23007AC9' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1 8a7 7 0 1 1 2.898 5.673c-.167-.121-.216-.406-.002-.62l1.8-1.8a3.5 3.5 0 0 0 4.572-.328l1.414-1.415a.5.5 0 0 0 0-.707l-.707-.707 1.559-1.563a.5.5 0 1 0-.708-.706l-1.559 1.562-1.414-1.414 1.56-1.562a.5.5 0 1 0-.707-.706l-1.56 1.56-.707-.706a.5.5 0 0 0-.707 0L5.318 5.975a3.5 3.5 0 0 0-.328 4.571l-1.8 1.8c-.58.58-.62 1.6.121 2.137A8 8 0 1 0 0 8a.5.5 0 0 0 1 0Z'/%3E%3C/svg%3E");
     vertical-align: bottom;
     pointer-events: none;
+}
+
+.route-table {
+    border-collapse: unset;
 }
 
 .route-table caption {
