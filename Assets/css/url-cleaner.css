@@ -198,3 +198,8 @@
 .route-table caption {
     margin-bottom: 5px;
 }
+
+#ApplicationPanel h3, #PluginPanel h3 {
+    font-weight: 600;
+    margin-top: 2px;
+}
