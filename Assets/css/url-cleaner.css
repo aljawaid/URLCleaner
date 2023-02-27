@@ -59,19 +59,30 @@
     font-weight: 600;
 }
 
-#URLCleanerPage .section-intro a {
+#URLCleanerPage .section-intro a, .url-detection a {
     font-weight: 600;
     margin-left: 3px;
-    color: var(--pp-orange);
+    color: var(--blue-icon-dark);
 }
 
-.options-block {
+.options-block, #ApplicationPanel {
     border-radius: var(--border-radius-url-cleaner);
+    border: 1px groove var(--pp-blue);
+}
+
+.options-block > legend {
+    font-weight: 600;
+    padding: 0 10px;
+    border: 1px solid var(--pp-blue);
+    border-radius: 15px;
 }
 
 .options-section {
     display: inline-block;
     border-radius: var(--border-radius-url-cleaner);
+    padding: 5px 15px;
+    border: 1px solid #888;
+    width: auto;
 }
 
 .options-section legend {
@@ -85,7 +96,7 @@
 }
 
 .url-detection i {
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .url-radio-options label {
