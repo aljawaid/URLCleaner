@@ -121,6 +121,12 @@
 .url-radio-options .form-actions .btn:hover, .url-radio-options .form-actions .btn:focus {
     background-color: rgba(5, 93, 32, .6);
 }
+
+.route-table-row {
+    font-family: monospace;
+    font-size: 1.1em;
+}
+
 .route-count {
     vertical-align: super;
     border-radius: var(--border-radius-url-cleaner);
