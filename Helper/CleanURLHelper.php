@@ -8,7 +8,7 @@ class CleanURLHelper extends Base
 {
     public function newCoreRoutes()
     {
-        $routes = array(
+        return array(
             // Default key for each will start from 0
             array(
                 "before_route" => "?controller=TaskMovePositionController&action=show&task_id=662&project_id=37",
@@ -23,7 +23,7 @@ class CleanURLHelper extends Base
 
     public function newPluginRoutes()
     {
-        $routes = array(
+        return array(
             // Default key for each will start from 0
             array(
                 "before_route" => "?controller=Bigboard&action=index&plugin=Bigboard",
