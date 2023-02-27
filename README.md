@@ -8,21 +8,24 @@ This simple tool extends the existing rewriting of browser URLs for your Kanboar
 Features
 -------------
 
-- Use pretty urls around the site
+- Extend core routes into clean URLs around the site
+- Extend selected plugin routes into clean URLs
+  - Plugin Compatibility:
+  - [Bigboard](https://github.com/TimoStahl/kanboard_plugin_bigboard)
 
 
 Screenshots
 ----------
 
-**title**  
+**URL Management**  
 
-![Screenshot Name](../master/Screenshots/screenshot-name.png "Read Screenshot Name")
+![URL Management](../master/screenshot-url-cleaner.png)
 
 
 Usage
 -------------
 
-Go to `Settings` &#10562;
+Go to `Settings` &#10562; URL Cleaner
 
 
 Compatibility
