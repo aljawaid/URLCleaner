@@ -50,8 +50,8 @@
                             <td class="route-table-row route-before"><?= $this->helper->text->e($route['before_route']) ?></td>
                             <td class="route-table-row route-after"><?= $this->helper->text->e($route['after_route']) ?></td>
                         </tr>
-                    </tbody>
                     <?php endforeach ?>
+                    </tbody>
                 </table>
             </div>
         </div>
