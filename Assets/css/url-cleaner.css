@@ -44,8 +44,57 @@
 
 .display-none, .d-none { display: none !important; }
 
-.font-weight-bold { font-weight: bold; }
+.font-weight-bold { font-weight: 600; }
 
 .text-center { text-align: center; }
 
 .relative { position: relative; }
+
+.url-cleaner-page-margin {
+    margin: var(--page-margin-url-cleaner);
+}
+
+.url-cleaner-page-header h2 {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+#URLCleanerPage .section-intro a {
+    font-weight: 600;
+    margin-left: 3px;
+    color: var(--pp-orange);
+}
+
+.options-block {
+    border-radius: var(--border-radius-url-cleaner);
+}
+
+.options-section {
+    display: inline-block;
+    border-radius: var(--border-radius-url-cleaner);
+}
+
+.options-section legend {
+    font-size: 1.1em;
+}
+
+.url-radio-options, .url-detection {
+    height: 31px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.url-detection i {
+    margin-top: 10px;
+}
+
+.url-radio-options label {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 0;
+}
+
+.url-radio-options .form-actions {
+    display: inline-block;
+    padding-top: 0;
+}
