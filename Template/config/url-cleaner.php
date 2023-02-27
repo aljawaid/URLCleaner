@@ -34,34 +34,23 @@
             <h3 class=""><?= t('Application URLs') ?></h3>
             <div class="table-responsive table-responsive-sm">
                 <table class="table table-striped table-sm">
-                  <caption>URLs shown below extend existing core routes in the application.</caption>
-                  <thead class="thead-dark">
-                    <tr>
-                      <th scope="col">before (route)</th>
-                      <th scope="col">after (url)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                    <caption>URLs shown below extend existing core routes in the application.</caption>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">before (route)</th>
+                            <th scope="col">after (url)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     <?php
                     $routes = $this->helper->cleanURLHelper->newCoreRoutes();
                     ?>
                     <?php foreach ($routes as $route): ?>
-
-
-                    <tr>
-                      <td><?= $this->helper->text->e($route['before_route']) ?></td>
-                      <td><?= $this->helper->text->e($route['after_route']) ?></td>
-                    </tr>
-                    <tr>
-                      <td>Core</td>
-                      <td>Thornton</td>
-                    </tr>
-                    <tr>
-                      <td>?controller=Bigboard&action=index&plugin=Bigboard</td>
-                      <td>/bigboard</td>
-                    </tr>
-                  </tbody>
-
+                        <tr>
+                            <td><?= $this->helper->text->e($route['before_route']) ?></td>
+                            <td><?= $this->helper->text->e($route['after_route']) ?></td>
+                        </tr>
+                    </tbody>
                     <?php endforeach ?>
                 </table>
             </div>
