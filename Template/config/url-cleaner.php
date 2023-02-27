@@ -37,7 +37,7 @@
             <h3 class=""><span class="url-cleaner-app-icon"></span> <?= t('Application URLs') ?> <span class="route-count"><?= count($routesCore) ?></span></h3>
             <div class="table-responsive table-responsive-sm route-table-wrapper">
                 <table class="table table-sm route-table">
-                    <caption><?= t('The list below extends existing routes in the application') ?></caption>
+                    <caption><?= t('The list below extends existing routes throughout the application') ?></caption>
                     <thead class="thead-dark">
                         <tr>
                             <th class="route-table-column" scope="col"><?= t('Before [Route]') ?></th>
