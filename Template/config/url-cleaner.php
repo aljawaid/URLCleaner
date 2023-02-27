@@ -1,6 +1,6 @@
 <div id="URLCleanerPage" class="url-cleaner-page-margin">
     <div class="url-cleaner-page-header">
-        <h2 class=""><?= t('URL Management') ?></h2>
+        <h2 class=""><span class="url-cleaner-icon"></span> <?= t('URL Management') ?></h2>
     </div>
     <p class="section-intro"><?= t('URLs are sanitized based on routes and activities within the application. Clean URLs improve the usability and accessibility of a website encouraging consistency and productivity. Learn more about clean URLs on Wikipedia.') ?> <a href="https://en.wikipedia.org/wiki/Clean_URL" class="" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>"><?= t('What are clean URLs?') ?></a>
     </p>
@@ -34,7 +34,7 @@
     <?php if ($this->task->configModel->get('clean-url-options', '') == 'enable'): ?>
         <div id="ApplicationPanel" class="panel">
             <?php $routesCore = $this->helper->cleanURLHelper->newCoreRoutes(); ?>
-            <h3 class=""><?= t('Application URLs') ?> <span class="route-count"><?= count($routesCore) ?></span></h3>
+            <h3 class=""><span class="url-cleaner-app-icon"></span> <?= t('Application URLs') ?> <span class="route-count"><?= count($routesCore) ?></span></h3>
             <div class="table-responsive table-responsive-sm route-table-wrapper">
                 <table class="table table-sm route-table">
                     <caption><?= t('The list below extends existing routes in the application') ?></caption>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div id="PluginPanel" class="panel">
-            <h3 class=""><?= t('Plugin URLs') ?></h3>
+            <h3 class=""><span class="url-cleaner-plugin-icon"></span> <?= t('Plugin URLs') ?></h3>
             <p class="">The URLs listed below are curated from plugins in the <?= $this->url->link(t('Extensions Directory'), 'PluginController', 'directory') ?> </p>
         </div>
     <?php endif ?>
