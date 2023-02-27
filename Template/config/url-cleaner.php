@@ -26,7 +26,7 @@
                     <?= $this->form->radio('clean-url-options', t('Enable Clean URLs'), 'enable', true, '', isset($values['clean-url-options']) && $values['clean-url-options'] == 'enable') ?>
                     <?= $this->form->radio('clean-url-options', t('Disable Clean URLs'), 'disable', isset($values['clean-url-options']) && $values['clean-url-options'] == 'disable') ?>
                     <div class="form-actions">
-                        <button type="submit" class="btn" title="<?= t('Saves changes') ?>"><?= t('Save Settings') ?></button>
+                        <button type="submit" class="btn"><?= t('Save Settings') ?></button>
                     </div>
                 </div>
             </form>

@@ -98,6 +98,18 @@
     display: inline-block;
     padding-top: 0;
 }
+
+.url-radio-options .form-actions .btn {
+    font-size: 1em;
+    background-color: var(--pp-green-dark);
+    color: var(--pp-white);
+    border-radius: var(--border-radius-url-cleaner);
+    border: 1px solid var(--pp-green-dark);
+}
+
+.url-radio-options .form-actions .btn:hover, .url-radio-options .form-actions .btn:focus {
+    background-color: rgba(5, 93, 32, .6);
+}
 .route-count {
     vertical-align: super;
     border-radius: var(--border-radius-url-cleaner);
