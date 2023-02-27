@@ -26,6 +26,14 @@ class CleanURLHelper extends Base
                 "before_route" => "?controller=WebNotificationController&action=show&user_id=1",
                 "after_route" => "/user/1/notifications/show"
             ),
+            array(
+                "before_route" => "?controller=BoardViewController&action=show&project_id=37&search=status%3Aopen",
+                "after_route" => "/board/37/status:open"
+            ),
+            array(
+                "before_route" => "?controller=TaskModificationController&action=edit&task_id=629&project_id=34",
+                "after_route" => "/project/34/task/629/edit"
+            ),
         );
     }
 
