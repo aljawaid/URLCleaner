@@ -93,6 +93,10 @@
     font-weight: 600;
 }
 
+#URLCleanerPage .section-intro {
+    margin: 20px 10px 25px 10px;
+}
+
 #URLCleanerPage .section-intro a, .url-detection a {
     font-weight: 600;
     margin-left: 3px;
