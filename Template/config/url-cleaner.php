@@ -1,12 +1,12 @@
-<div class="page-margin">
-    <div class="page-header">
+<div id="URLCleanerPage" class="url-cleaner-page-margin">
+    <div class="url-cleaner-page-header">
         <h2 class=""><?= t('URL Management') ?></h2>
     </div>
     <p class="section-intro"><?= t('URLs are sanitized based on routes and activities within the application. Clean URLs improve the usability and accessibility of a website encouraging consistency and productivity. Learn more about clean URLs on Wikipedia.') ?> <a href="https://en.wikipedia.org/wiki/Clean_URL" class="" target="_blank" rel="noopener noreferrer" title="<?= t('Opens in a new window') ?>"><?= t('What are clean URLs?') ?></a>
     </p>
-    <fieldset class="">
-        <legend><?= t('Options') ?></legend>
-        <fieldset class="options-section">
+    <fieldset class="options-block">
+        <legend class="font-weight-bold"><?= t('Options') ?></legend>
+        <fieldset class="options-section column-25">
             <legend><?= t('Configuration') ?></legend>
             <div class="url-detection">
             <?php if (ENABLE_URL_REWRITE): ?>
@@ -25,9 +25,9 @@
                 <div class="url-radio-options">
                     <?= $this->form->radio('clean-url-options', t('Enable Clean URLs'), 'enable', true, '', isset($values['clean-url-options']) && $values['clean-url-options'] == 'enable') ?>
                     <?= $this->form->radio('clean-url-options', t('Disable Clean URLs'), 'disable', isset($values['clean-url-options']) && $values['clean-url-options'] == 'disable') ?>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-blue" title="<?= t('Saves changes') ?>"><?= t('Save Settings') ?></button>
+                    <div class="form-actions">
+                        <button type="submit" class="btn" title="<?= t('Saves changes') ?>"><?= t('Save Settings') ?></button>
+                    </div>
                 </div>
             </form>
         </fieldset>
