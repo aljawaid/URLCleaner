@@ -35,7 +35,7 @@
     <?php if ($this->task->configModel->get('clean-url-options', '') == 'enable'): ?>
         <div id="ApplicationPanel" class="panel">
             <?php $routesCore = $this->helper->cleanURLHelper->newCoreRoutes(); ?>
-            <h3 class=""><?= t('Application URLs') ?> (<?= count($routesCore) ?>)</h3>
+            <h3 class=""><?= t('Application URLs') ?> <span class="route-count"><?= count($routesCore) ?></span></h3>
             <div class="table-responsive table-responsive-sm route-table-wrapper">
                 <table class="table table-sm route-table">
                     <caption><?= t('The URLs shown below extend existing core routes in the application') ?></caption>
