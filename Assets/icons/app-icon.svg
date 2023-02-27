@@ -1,0 +1,6 @@
+<svg width="24px" height="24px" class="app-icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" xml:space="preserve" stroke="none">
+    <g stroke-width="0"/>
+    <g stroke-linecap="round" stroke-linejoin="round"/>
+    <path fill="#007AC9" d="M29 3.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM26.5 3a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1zm-2 0a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1zM31 30.36H1A.36.36 0 0 1 .64 30V2A.36.36 0 0 1 1 1.64h30a.36.36 0 0 1 .36.36v28a.36.36 0 0 1-.36.36zm-21.64-.72h21.28V5.36H9.36v24.28zm-8 0h7.28V5.36H1.36v24.28zM9 4.64h21.64V2.36H1.36v2.28H9z"/>
+    <path style="fill:none" d="M0 0h32v32H0z"/>
+</svg>
