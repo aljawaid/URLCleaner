@@ -33,6 +33,7 @@ class Plugin extends Base
             $this->route->addRoute('/settings/email', 'ConfigController', 'email');
             $this->route->addRoute('/settings/link-labels', 'LinkController', 'show');
             $this->route->addRoute('/settings/currencies', 'CurrencyController', 'show');
+            $this->route->addRoute('/project/:project_id/task/list/:search', 'TaskListController', 'show');
 
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
