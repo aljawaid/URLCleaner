@@ -56,8 +56,27 @@
             </div>
         </div>
         <div id="PluginPanel" class="panel">
-            <h3 class=""><span class="url-cleaner-plugin-icon"></span> <?= t('Plugin URLs') ?></h3>
-            <p class="">The URLs listed below are curated from plugins in the <?= $this->url->link(t('Extensions Directory'), 'PluginController', 'directory') ?> </p>
+            <?php $routesPlugins = $this->helper->cleanURLHelper->newPluginRoutes(); ?>
+            <h3 class=""><span class="url-cleaner-plugin-icon"></span> <?= t('Plugin URLs') ?> <span class="route-count"><?= count($routesPlugins) ?></span></h3>
+            <div class="table-responsive table-responsive-sm route-table-wrapper">
+                <table class="table table-sm route-table">
+                    <caption><?= t('The URLs listed below are curated from plugins in the') ?> <?= $this->url->link(t('Plugin Directory'), 'PluginController', 'directory') ?></caption>
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="route-table-column table-corner-tl" scope="col"><?= t('Before [Route]') ?></th>
+                            <th class="route-table-column table-corner-tr" scope="col"><?= t('After [Clean URL]') ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($routesPlugins as $route): ?>
+                        <tr>
+                            <td class="route-table-row route-before table-corner-bl"><?= $this->helper->text->e($route['before_route']) ?></td>
+                            <td class="route-table-row route-after table-corner-br"><?= $this->helper->text->e($route['after_route']) ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     <?php endif ?>
 </div>
