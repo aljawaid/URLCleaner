@@ -108,6 +108,16 @@ class CleanURLHelper extends Base
                 "after_route" => "/settings/wiki",
                 "plugin" => "Wiki"
             ),
+            array(
+                "before_route" => "?controller=CalendarController&action=user&plugin=Calendar",
+                "after_route" => "/my-calendar",
+                "plugin" => "Calendar"
+            ),
+            array(
+                "before_route" => "?controller=ConfigController&action=show&plugin=Calendar",
+                "after_route" => "/settings/calendar",
+                "plugin" => "Calendar"
+            ),
         );
     }
 }

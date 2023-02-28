@@ -11,7 +11,7 @@ Features
 - Extend core routes into clean URLs around the site
 - Extend selected plugin routes into clean URLs
   - Plugin Compatibility:
-  - [Bigboard](https://github.com/TimoStahl/kanboard_plugin_bigboard), [Wiki](https://github.com/funktechno/kanboard-plugin-wiki)
+  - [Bigboard](https://github.com/TimoStahl/kanboard_plugin_bigboard), [Wiki](https://github.com/funktechno/kanboard-plugin-wiki), [Calendar](https://github.com/kanboard/plugin-calendar)
 
 
 Screenshots

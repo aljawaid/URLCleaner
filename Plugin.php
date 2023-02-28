@@ -33,6 +33,7 @@ class Plugin extends Base
             $this->route->addRoute('/settings/email', 'ConfigController', 'email');
             $this->route->addRoute('/settings/link-labels', 'LinkController', 'show');
             $this->route->addRoute('/settings/currencies', 'CurrencyController', 'show');
+
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
             $this->route->addRoute('/help', 'WikiController', 'index', 'Wiki');
@@ -48,6 +49,11 @@ class Plugin extends Base
             $this->route->addRoute('/help/project/:project_id/page/:wiki_id/editions', 'WikiController', 'editions', 'wiki');
             $this->route->addRoute('/help/project/:project_id/page/:wiki_id/editions/restore/:edition', 'WikiController', 'confirm_restore', 'wiki');
             $this->route->addRoute('/settings/wiki', 'ConfigController', 'show', 'Wiki');
+            $this->route->addRoute('/my-calendar', 'CalendarController', 'user', 'Calendar');
+            $this->route->addRoute('/settings/calendar', 'ConfigController', 'show', 'Calendar');
+
+
+
         }
 
         // Helper
