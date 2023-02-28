@@ -31,6 +31,7 @@ class Plugin extends Base
             $this->route->addRoute('/board/:project_id/:search', 'BoardViewController', 'show');
             $this->route->addRoute('/project/:project_id/task/:task_id/edit', 'TaskModificationController', 'edit');
             $this->route->addRoute('/settings/email', 'ConfigController', 'email');
+            $this->route->addRoute('/settings/link-labels', 'LinkController', 'show');
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
             $this->route->addRoute('/help', 'WikiController', 'index', 'Wiki');

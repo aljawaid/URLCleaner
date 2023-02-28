@@ -38,6 +38,10 @@ class CleanURLHelper extends Base
                 "before_route" => "?controller=ConfigController&action=email",
                 "after_route" => "/settings/email"
             ),
+            array(
+                "before_route" => "?controller=LinkController&action=show",
+                "after_route" => "/settings/link-labels"
+            ),
         );
     }
 
