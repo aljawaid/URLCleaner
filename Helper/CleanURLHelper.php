@@ -51,6 +51,46 @@ class CleanURLHelper extends Base
                 "after_route" => "/help",
                 "plugin" => "Wiki"
             ),
+            array(
+                "before_route" => "?controller=WikiController&action=show&project_id=37&search=status%3Aopen&plugin=wiki",
+                "after_route" => "/help/project/37/show/status:open",
+                "plugin" => "Wiki"
+            ),
+            array(
+                "before_route" => "?controller=WikiController&action=create&plugin=wiki&project_id=37",
+                "after_route" => "/help/project/37/create",
+                "plugin" => "Wiki"
+            ),
+            array(
+                "before_route" => "?controller=WikiController&action=detail&plugin=wiki&project_id=37&wiki_id=8",
+                "after_route" => "/help/project/37/page/8/show",
+                "plugin" => "Wiki"
+            ),
+            array(
+                "before_route" => "?controller=WikiController&action=edit&plugin=wiki&wiki_id=8",
+                "after_route" => "/help/page/8/edit",
+                "plugin" => "Wiki"
+            ),
+            array(
+                "before_route" => "?controller=WikiFileController&action=create&plugin=wiki&wiki_id=8&project_id=37",
+                "after_route" => "/help/project/37/page/8/attach",
+                "plugin" => "Wiki"
+            ),
+            array(
+                "before_route" => "?controller=WikiController&action=confirm&plugin=wiki&project_id=37&wiki_id=8",
+                "after_route" => "/help/project/37/page/8/delete",
+                "plugin" => "Wiki"
+            ),
+            array(
+                "before_route" => "?controller=WikiController&action=editions&plugin=wiki&project_id=37&wiki_id=8",
+                "after_route" => "/help/project/37/page/8/editions",
+                "plugin" => "Wiki"
+            ),
+            array(
+                "before_route" => "?controller=WikiController&action=confirm_restore&plugin=wiki&project_id=37&wiki_id=8&edition=5",
+                "after_route" => "/help/project/37/page/8/editions/restore/5",
+                "plugin" => "Wiki"
+            ),
         );
     }
 }
