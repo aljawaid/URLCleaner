@@ -70,14 +70,16 @@ $routesPlugins = $this->helper->cleanURLHelper->newPluginRoutes();
                     <thead class="thead-dark">
                         <tr>
                             <th class="route-table-column table-corner-tl" scope="col"><?= t('Before [Route]') ?></th>
-                            <th class="route-table-column table-corner-tr" scope="col"><?= t('After [Clean URL]') ?></th>
+                            <th class="route-table-column" scope="col"><?= t('After [Clean URL]') ?></th>
+                            <th class="route-table-column table-corner-tr" scope="col"><?= t('Plugin') ?></th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($routesPlugins as $route): ?>
                         <tr>
                             <td class="route-table-row route-before table-corner-bl"><?= $this->helper->text->e($route['before_route']) ?></td>
-                            <td class="route-table-row route-after table-corner-br"><?= $this->helper->text->e($route['after_route']) ?></td>
+                            <td class="route-table-row route-after"><?= $this->helper->text->e($route['after_route']) ?></td>
+                            <td class="route-table-row table-corner-br"><?= $this->helper->text->e($route['plugin']) ?></td>
                         </tr>
                     <?php endforeach ?>
                     </tbody>
