@@ -91,6 +91,11 @@ class CleanURLHelper extends Base
                 "after_route" => "/help/project/37/page/8/editions/restore/5",
                 "plugin" => "Wiki"
             ),
+            array(
+                "before_route" => "?controller=ConfigController&action=show&plugin=Wiki",
+                "after_route" => "/settings/wiki",
+                "plugin" => "Wiki"
+            ),
         );
     }
 }

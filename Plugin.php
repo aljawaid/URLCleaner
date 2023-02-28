@@ -44,6 +44,7 @@ class Plugin extends Base
             $this->route->addRoute('/help/project/:project_id/page/:wiki_id/delete', 'WikiController', 'confirm', 'wiki');
             $this->route->addRoute('/help/project/:project_id/page/:wiki_id/editions', 'WikiController', 'editions', 'wiki');
             $this->route->addRoute('/help/project/:project_id/page/:wiki_id/editions/restore/:edition', 'WikiController', 'confirm_restore', 'wiki');
+            $this->route->addRoute('/settings/wiki', 'ConfigController', 'show', 'Wiki');
         }
 
         // Helper
