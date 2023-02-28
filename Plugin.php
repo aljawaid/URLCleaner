@@ -28,12 +28,13 @@ class Plugin extends Base
             $this->route->addRoute('/my-activity', 'ActivityController', 'user');
             $this->route->addRoute('/project/:project_id/overview/:search', 'ProjectOverviewController', 'show');
             $this->route->addRoute('/user/:user_id/notifications/show', 'WebNotificationController', 'show');
-            $this->route->addRoute('/board/:project_id/:search', 'BoardViewController', 'show');
+            $this->route->addRoute('/project/:project_id/board/:search', 'BoardViewController', 'show');
             $this->route->addRoute('/project/:project_id/task/:task_id/edit', 'TaskModificationController', 'edit');
             $this->route->addRoute('/settings/email', 'ConfigController', 'email');
             $this->route->addRoute('/settings/link-labels', 'LinkController', 'show');
             $this->route->addRoute('/settings/currencies', 'CurrencyController', 'show');
             $this->route->addRoute('/project/:project_id/task/list/:search', 'TaskListController', 'show');
+
 
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
