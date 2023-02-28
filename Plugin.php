@@ -51,9 +51,7 @@ class Plugin extends Base
             $this->route->addRoute('/settings/wiki', 'ConfigController', 'show', 'Wiki');
             $this->route->addRoute('/my-calendar', 'CalendarController', 'user', 'Calendar');
             $this->route->addRoute('/settings/calendar', 'ConfigController', 'show', 'Calendar');
-
-
-
+            $this->route->addRoute('/project/:project_id/calendar/:search', 'CalendarController', 'project', 'Calendar');
         }
 
         // Helper

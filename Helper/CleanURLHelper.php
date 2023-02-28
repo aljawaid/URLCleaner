@@ -118,6 +118,11 @@ class CleanURLHelper extends Base
                 "after_route" => "/settings/calendar",
                 "plugin" => "Calendar"
             ),
+            array(
+                "before_route" => "?controller=CalendarController&action=project&project_id=37&search=status%3Aopen&plugin=Calendar",
+                "after_route" => "/project/37/calendar/status:open",
+                "plugin" => "Calendar"
+            ),
         );
     }
 }
