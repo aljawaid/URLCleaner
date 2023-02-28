@@ -42,6 +42,10 @@ class CleanURLHelper extends Base
                 "before_route" => "?controller=LinkController&action=show",
                 "after_route" => "/settings/link-labels"
             ),
+            array(
+                "before_route" => "?controller=CurrencyController&action=show",
+                "after_route" => "/settings/currencies"
+            ),
         );
     }
 
