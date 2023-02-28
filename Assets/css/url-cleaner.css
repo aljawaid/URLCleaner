@@ -97,13 +97,13 @@
     margin: 20px 10px 25px 10px;
 }
 
-#URLCleanerPage .section-intro a, .url-detection a {
+#URLCleanerPage .section-intro a, .url-detection a, .route-table caption a {
     font-weight: 600;
     margin-left: 3px;
     color: var(--blue-icon-dark);
 }
 
-.options-block, #ApplicationPanel {
+.options-block, #ApplicationPanel, #PluginPanel {
     border-radius: var(--border-radius-url-cleaner);
     border: 1px groove var(--pp-blue);
 }
