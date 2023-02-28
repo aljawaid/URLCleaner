@@ -21,6 +21,8 @@ Screenshots
 
 ![URL Management](../master/screenshot-url-cleaner.png)
 
+![URL Management](../master/screenshot-url-cleaner-plugins.png)
+
 
 Usage
 -------------
