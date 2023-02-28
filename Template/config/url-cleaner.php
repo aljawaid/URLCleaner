@@ -11,6 +11,10 @@ $routesPlugins = $this->helper->cleanURLHelper->newPluginRoutes();
     <fieldset class="options-block">
         <legend class=""><?= t('Options') ?></legend>
         <fieldset class="options-section">
+            <legend><?= t('Total URLs') ?></legend>
+            <div class="total-urls"><span class="total-route-count"><?= (count($routesCore) + count($routesPlugins)) ?></span> <?= t('Clean URLs will be available when enabled') ?> </div>
+        </fieldset>
+        <fieldset class="options-section">
             <legend><?= t('Configuration') ?></legend>
             <div class="url-detection">
             <?php if (ENABLE_URL_REWRITE): ?>

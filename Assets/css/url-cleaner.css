@@ -133,6 +133,23 @@
     vertical-align: middle;
 }
 
+.total-urls {
+    padding-top: 5px;
+    padding-bottom: 0;
+    height: 26px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.total-route-count {
+    border-radius: var(--border-radius-url-cleaner);
+    border: 1px solid var(--blue-icon-dark);
+    padding: 0 4px;
+    font-weight: 700;
+    background-color: var(--pp-blue);
+    color: var(--pp-white);
+}
+
 .url-detection i {
     margin-top: 8px;
 }
