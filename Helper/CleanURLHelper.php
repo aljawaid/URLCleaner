@@ -46,6 +46,11 @@ class CleanURLHelper extends Base
                 "after_route" => "/bigboard",
                 "plugin" => "Bigboard"
             ),
+            array(
+                "before_route" => "?controller=WikiController&action=index&plugin=Wiki",
+                "after_route" => "/help",
+                "plugin" => "Wiki"
+            ),
         );
     }
 }

@@ -32,6 +32,8 @@ class Plugin extends Base
             $this->route->addRoute('/project/:project_id/task/:task_id/edit', 'TaskModificationController', 'edit');
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
+            $this->route->addRoute('/help', 'WikiController', 'index', 'Wiki');
+            $this->route->addRoute('/help', 'WikiController', 'index', 'wiki');
         }
 
         // Helper
