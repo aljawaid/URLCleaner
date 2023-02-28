@@ -34,6 +34,10 @@ class CleanURLHelper extends Base
                 "before_route" => "?controller=TaskModificationController&action=edit&task_id=629&project_id=34",
                 "after_route" => "/project/34/task/629/edit"
             ),
+            array(
+                "before_route" => "?controller=ConfigController&action=email",
+                "after_route" => "/settings/email"
+            ),
         );
     }
 
