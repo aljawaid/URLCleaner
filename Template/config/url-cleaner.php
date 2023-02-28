@@ -1,3 +1,7 @@
+<?php
+$routesCore = $this->helper->cleanURLHelper->newCoreRoutes();
+$routesPlugins = $this->helper->cleanURLHelper->newPluginRoutes();
+?>
 <div id="URLCleanerPage" class="url-cleaner-page-margin">
     <div class="url-cleaner-page-header">
         <h2 class=""><span class="url-cleaner-icon"></span> <?= t('URL Management') ?></h2>
@@ -33,7 +37,6 @@
     </fieldset>
     <?php if ($this->task->configModel->get('clean-url-options', '') == 'enable'): ?>
         <div id="ApplicationPanel" class="panel">
-            <?php $routesCore = $this->helper->cleanURLHelper->newCoreRoutes(); ?>
             <h3 class=""><span class="url-cleaner-app-icon"></span> <?= t('Application URLs') ?> <span class="route-count"><?= count($routesCore) ?></span></h3>
             <div class="table-responsive table-responsive-sm route-table-wrapper">
                 <table class="table table-sm route-table">
@@ -56,7 +59,6 @@
             </div>
         </div>
         <div id="PluginPanel" class="panel">
-            <?php $routesPlugins = $this->helper->cleanURLHelper->newPluginRoutes(); ?>
             <h3 class=""><span class="url-cleaner-plugin-icon"></span> <?= t('Plugin URLs') ?> <span class="route-count"><?= count($routesPlugins) ?></span></h3>
             <div class="table-responsive table-responsive-sm route-table-wrapper">
                 <table class="table table-sm route-table">
