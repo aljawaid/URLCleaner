@@ -35,6 +35,7 @@ class Plugin extends Base
             $this->route->addRoute('/settings/currencies', 'CurrencyController', 'show');
             $this->route->addRoute('/project/:project_id/task/list/:search', 'TaskListController', 'show');
             $this->route->addRoute('/project/:project_id/task/:task_id/recurrence/edit', 'TaskRecurrenceController', 'edit');
+            $this->route->addRoute('/project/:project_id/task/:task_id/subtask/add', 'SubtaskController', 'create');
 
 
             //PLUGINS
