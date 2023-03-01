@@ -50,6 +50,10 @@ class CleanURLHelper extends Base
                 "before_route" => "?controller=TaskListController&action=show&project_id=37&search=status%3Aopen",
                 "after_route" => "/project/37/task/liststatus:open"
             ),
+            array(
+                "before_route" => "?controller=TaskRecurrenceController&action=edit&task_id=662&project_id=37",
+                "after_route" => "/project/37/task/662/recurrence/edit"
+            ),
         );
     }
 
