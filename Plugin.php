@@ -54,6 +54,16 @@ class Plugin extends Base
             $this->route->addRoute('/my-calendar', 'CalendarController', 'user', 'Calendar');
             $this->route->addRoute('/settings/calendar', 'ConfigController', 'show', 'Calendar');
             $this->route->addRoute('/project/:project_id/calendar/:search', 'CalendarController', 'project', 'Calendar');
+            $this->route->addRoute('/settings/custom-fields', 'MetadataTypesController', 'config', 'MetaMagik');
+            $this->route->addRoute('/settings/custom-fields/:key/edit', 'MetadataTypesController', 'editType', 'metaMagik');
+            $this->route->addRoute('/settings/custom-fields/:key/delete', 'MetadataTypesController', 'confirmTask', 'metaMagik');
+            $this->route->addRoute('/project/:project_id/metadata', 'MetadataController', 'project', 'metaMagik');
+            $this->route->addRoute('/project/:project_id/task/:task_id/metadata', 'MetadataController', 'task', 'metaMagik');
+            $this->route->addRoute('/user/:user_id/metadata', 'MetadataController', 'user', 'metaMagik');
+            $this->route->addRoute('/user/:user_id/metadata/:key/edit', 'MetadataController', 'editUser', 'metaMagik');
+            $this->route->addRoute('/user/:user_id/metadata/:key/delete', 'MetadataController', 'confirmUser', 'metaMagik');
+            $this->route->addRoute('/project/:project_id/analytics/metadata/total', 'AnalyticExtensionController', 'fieldTotalDistribution', 'metaMagik');
+            $this->route->addRoute('/project/:project_id/analytics/metadata/range', 'AnalyticExtensionController', 'fieldTotalDistributionRange', 'metaMagik');
         }
 
         // Helper

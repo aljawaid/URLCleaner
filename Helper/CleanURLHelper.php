@@ -127,6 +127,56 @@ class CleanURLHelper extends Base
                 "after_route" => "/project/37/calendar/status:open",
                 "plugin" => "Calendar"
             ),
+            array(
+                "before_route" => "?controller=MetadataTypesController&action=config&plugin=MetaMagik",
+                "after_route" => "/settings/custom-fields",
+                "plugin" => "MetaMagik"
+            ),
+            array(
+                "before_route" => "?controller=MetadataTypesController&action=editType&plugin=metaMagik&key=3",
+                "after_route" => "/settings/custom-fields/3/edit",
+                "plugin" => "MetaMagik"
+            ),
+            array(
+                "before_route" => "?controller=MetadataTypesController&action=confirmTask&plugin=metaMagik&key=3",
+                "after_route" => "/settings/custom-fields/3/delete",
+                "plugin" => "MetaMagik"
+            ),
+            array(
+                "before_route" => "?controller=MetadataController&action=project&plugin=metaMagik&project_id=37",
+                "after_route" => "/project/37/metadata",
+                "plugin" => "MetaMagik"
+            ),
+            array(
+                "before_route" => "?controller=MetadataController&action=task&plugin=metaMagik&task_id=662&project_id=37",
+                "after_route" => "/project/37/task/662/metadata",
+                "plugin" => "MetaMagik"
+            ),
+            array(
+                "before_route" => "?controller=MetadataController&action=user&plugin=metaMagik&user_id=1",
+                "after_route" => "/user/1/metadata",
+                "plugin" => "MetaMagik"
+            ),
+            array(
+                "before_route" => "?controller=MetadataController&action=editUser&plugin=metaMagik&user_id=1&key=board.collapsed.12",
+                "after_route" => "/user/1/metadata/board.collapsed.12/edit",
+                "plugin" => "MetaMagik"
+            ),
+            array(
+                "before_route" => "?controller=MetadataController&action=confirmUser&plugin=metaMagik&user_id=1&key=board.collapsed.14",
+                "after_route" => "/user/1/metadata/board.collapsed.14/delete",
+                "plugin" => "MetaMagik"
+            ),
+            array(
+                "before_route" => "?controller=AnalyticExtensionController&action=fieldTotalDistribution&plugin=metaMagik&project_id=37",
+                "after_route" => "/project/37/analytics/metadata/total",
+                "plugin" => "MetaMagik"
+            ),
+            array(
+                "before_route" => "?controller=AnalyticExtensionController&action=fieldTotalDistributionRange&plugin=metaMagik&project_id=37",
+                "after_route" => "/project/37/analytics/metadata/range",
+                "plugin" => "MetaMagik"
+            ),
         );
     }
 }
