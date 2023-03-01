@@ -66,6 +66,10 @@ class CleanURLHelper extends Base
                 "before_route" => "?controller=TaskExternalLinkController&action=find&task_id=662&project_id=37",
                 "after_route" => "/project/37/task/662/link/external/add"
             ),
+            array(
+                "before_route" => "?controller=CommentController&action=create&task_id=662&project_id=37",
+                "after_route" => "/project/37/task/662/comments/add"
+            ),
         );
     }
 

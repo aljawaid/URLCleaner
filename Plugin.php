@@ -38,6 +38,7 @@ class Plugin extends Base
             $this->route->addRoute('/project/:project_id/task/:task_id/subtask/add', 'SubtaskController', 'create');
             $this->route->addRoute('/project/:project_id/task/:task_id/link/internal/add', 'TaskInternalLinkController', 'create');
             $this->route->addRoute('/project/:project_id/task/:task_id/link/external/add', 'TaskExternalLinkController', 'find');
+            $this->route->addRoute('/project/:project_id/task/:task_id/comments/add', 'CommentController', 'create');
 
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
