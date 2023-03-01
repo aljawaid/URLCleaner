@@ -37,6 +37,7 @@ class Plugin extends Base
             $this->route->addRoute('/project/:project_id/task/:task_id/recurrence/edit', 'TaskRecurrenceController', 'edit');
             $this->route->addRoute('/project/:project_id/task/:task_id/subtask/add', 'SubtaskController', 'create');
             $this->route->addRoute('/project/:project_id/task/:task_id/link/internal/add', 'TaskInternalLinkController', 'create');
+            $this->route->addRoute('/project/:project_id/task/:task_id/link/external/add', 'TaskExternalLinkController', 'find');
 
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
