@@ -41,6 +41,7 @@ class Plugin extends Base
             $this->route->addRoute('/project/:project_id/task/:task_id/comments/add', 'CommentController', 'create');
             $this->route->addRoute('/project/:project_id/task/:task_id/files/attach', 'TaskFileController', 'create');
             $this->route->addRoute('/project/:project_id/task/:task_id/files/screenshots/attach', 'TaskFileController', 'screenshot');
+            $this->route->addRoute('/project/:project_id/task/:task_id/duplicate', 'TaskDuplicationController', 'duplicate');
 
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
