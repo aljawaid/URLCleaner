@@ -46,6 +46,7 @@ class Plugin extends Base
             $this->route->addRoute('/project/:project_id/task/:task_id/move-to-project', 'TaskDuplicationController', 'move');
             $this->route->addRoute('/project/:project_id/task/:task_id/email', 'TaskMailController', 'create');
             $this->route->addRoute('/project/:project_id/task/:task_id/close', 'TaskStatusController', 'close');
+            $this->route->addRoute('/project/:project_id/redirect/:redirect/task/:task_id/delete', 'TaskSuppressionController', 'confirm');
 
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
