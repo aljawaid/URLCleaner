@@ -106,6 +106,10 @@ class CleanURLHelper extends Base
                 "before_route" => "?controller=TaskSuppressionController&action=confirm&task_id=662&project_id=37&redirect=board",
                 "after_route" => "/project/37/redirect/board/task/662/delete"
             ),
+            array(
+                "before_route" => "?controller=TaskSuppressionController&action=confirm&task_id=662&project_id=37",
+                "after_route" => "/project/37/task/662/delete"
+            ),
         );
     }
 
