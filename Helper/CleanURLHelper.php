@@ -86,6 +86,10 @@ class CleanURLHelper extends Base
                 "before_route" => "?controller=TaskDuplicationController&action=copy&task_id=662&project_id=37",
                 "after_route" => "/project/37/task/662/copy"
             ),
+            array(
+                "before_route" => "?controller=TaskDuplicationController&action=move&task_id=662&project_id=37",
+                "after_route" => "/project/37/task/662/move-to-project"
+            ),
         );
     }
 
