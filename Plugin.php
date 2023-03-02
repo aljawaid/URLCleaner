@@ -41,6 +41,7 @@ class Plugin extends Base
             $this->route->addRoute('/project/:project_id/task/:task_id/comments/add', 'CommentController', 'create');
             $this->route->addRoute('/project/:project_id/task/:task_id/files/attach', 'TaskFileController', 'create');
             $this->route->addRoute('/project/:project_id/task/:task_id/files/screenshots/attach', 'TaskFileController', 'screenshot');
+            $this->route->addRoute('/project/:project_id/task/:task_id/files/screenshots/add', 'TaskPopoverController', 'screenshot');
             $this->route->addRoute('/project/:project_id/task/:task_id/duplicate', 'TaskDuplicationController', 'duplicate');
             $this->route->addRoute('/project/:project_id/task/:task_id/copy', 'TaskDuplicationController', 'copy');
             $this->route->addRoute('/project/:project_id/task/:task_id/move-to-project', 'TaskDuplicationController', 'move');

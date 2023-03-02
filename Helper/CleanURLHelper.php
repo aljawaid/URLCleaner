@@ -79,6 +79,10 @@ class CleanURLHelper extends Base
                 "after_route" => "/project/37/task/662/files/screenshots/attach"
             ),
             array(
+                "before_route" => "?controller=TaskPopoverController&action=screenshot&task_id=607&project_id=37",
+                "after_route" => "/project/37/task/607/files/screenshots/add"
+            ),
+            array(
                 "before_route" => "?controller=TaskDuplicationController&action=duplicate&task_id=662&project_id=37",
                 "after_route" => "/project/37/task/662/duplicate"
             ),
