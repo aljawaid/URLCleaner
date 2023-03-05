@@ -44,7 +44,7 @@ class CleanURLHelper extends Base
             ),
             array(
                 "before_route" => "?controller=CurrencyController&action=show",
-                "after_route" => "/settings/currencies"
+                "after_route" => "/settings/currencies/list"
             ),
             array(
                 "before_route" => "?controller=TaskListController&action=show&project_id=37&search=status%3Aopen",
