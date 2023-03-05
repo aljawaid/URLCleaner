@@ -51,6 +51,10 @@ class CleanURLHelper extends Base
                 "after_route" => "/settings/currencies/add"
             ),
             array(
+                "before_route" => "?controller=CurrencyController&action=change",
+                "after_route" => "/settings/currencies/change"
+            ),
+            array(
                 "before_route" => "?controller=TaskListController&action=show&project_id=37&search=status%3Aopen",
                 "after_route" => "/project/37/task/liststatus:open"
             ),
