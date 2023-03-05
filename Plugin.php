@@ -34,6 +34,7 @@ class Plugin extends Base
             $this->route->addRoute('/settings/link-labels', 'LinkController', 'show');
             $this->route->addRoute('/settings/link-labels/add', 'LinkController', 'create');
             $this->route->addRoute('/settings/link-labels/:link_id/edit', 'LinkController', 'edit');
+            $this->route->addRoute('/settings/link-labels/:link_id/delete', 'LinkController', 'confirm');
             $this->route->addRoute('/settings/currencies/list', 'CurrencyController', 'show');
             $this->route->addRoute('/settings/currencies/add', 'CurrencyController', 'create');
             $this->route->addRoute('/settings/currencies/change', 'CurrencyController', 'change');
