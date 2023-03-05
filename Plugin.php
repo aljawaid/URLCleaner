@@ -32,6 +32,7 @@ class Plugin extends Base
             $this->route->addRoute('/project/:project_id/task/:task_id/edit', 'TaskModificationController', 'edit');
             $this->route->addRoute('/settings/email', 'ConfigController', 'email');
             $this->route->addRoute('/settings/link-labels', 'LinkController', 'show');
+            $this->route->addRoute('/settings/link-labels/add', 'LinkController', 'create');
             $this->route->addRoute('/settings/currencies/list', 'CurrencyController', 'show');
             $this->route->addRoute('/settings/currencies/add', 'CurrencyController', 'create');
             $this->route->addRoute('/settings/currencies/change', 'CurrencyController', 'change');
