@@ -224,3 +224,15 @@
     font-weight: 600;
     margin-top: 2px;
 }
+
+span.plugin-override {
+    float: right;
+    font-size: .7em;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #FFA500;
+    border-radius: var(--border-radius-url-cleaner);
+    padding: 1px 4px;
+    color: #444;
+    font-weight: 700;
+    cursor: default;
+}

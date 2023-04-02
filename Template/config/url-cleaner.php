@@ -54,8 +54,15 @@ $routesPlugins = $this->helper->cleanURLHelper->newPluginRoutes();
                     <tbody>
                     <?php foreach ($routesCore as $route): ?>
                         <tr>
-                            <td class="route-table-row route-before table-corner-bl"><?= $this->helper->text->e($route['before_route']) ?></td>
-                            <td class="route-table-row route-after table-corner-br"><?= $this->helper->text->e($route['after_route']) ?></td>
+                            <td class="route-table-row route-before table-corner-bl">
+                                <?= $this->helper->text->e($route['before_route']) ?>
+                            </td>
+                            <td class="route-table-row route-after table-corner-br">
+                                <?php if (file_exists('plugins/CostControl') && (isset($route['moved_to']))): ?>
+                                    <span class="plugin-override" title="<?= $this->helper->text->e($route['moved_to']) ?> <?= t('plugin overrides this clean URL setting') ?>"><?= t('Plugin Override') ?></span>
+                                <?php endif ?>
+                                <?= $this->helper->text->e($route['after_route']) ?>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                     </tbody>
