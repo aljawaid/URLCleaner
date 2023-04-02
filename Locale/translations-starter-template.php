@@ -41,4 +41,6 @@ return array(
     'The URLs listed below are curated from plugins in the' => '',
     'Plugin Directory' => '',
     'Plugin' => '',
+    'plugin overrides this clean URL setting' => '',
+    'Plugin Override' => '',
 );
