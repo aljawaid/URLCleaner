@@ -56,15 +56,18 @@ class CleanURLHelper extends Base
             ),
             array(
                 "before_route" => "?controller=CurrencyController&action=show",
-                "after_route" => "/settings/currencies/list"
+                "after_route" => "/settings/currencies/rates",
+                "moved_to" => "ContentCleaner",
             ),
             array(
                 "before_route" => "?controller=CurrencyController&action=create",
-                "after_route" => "/settings/currencies/add"
+                "after_route" => "/settings/currencies/add",
+                "moved_to" => "ContentCleaner",
             ),
             array(
                 "before_route" => "?controller=CurrencyController&action=change",
-                "after_route" => "/settings/currencies/change"
+                "after_route" => "/settings/currencies/change",
+                "moved_to" => "ContentCleaner",
             ),
             array(
                 "before_route" => "?controller=TaskListController&action=show&project_id=37&search=status%3Aopen",
