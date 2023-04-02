@@ -1,6 +1,6 @@
 # URLCleaner
 
-#### _Plugin for [Kanboard](https://github.com/fguillot/kanboard "Kanboard - Kanban Project Management Software")_
+#### _Plugin for [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software")_
 
 This simple tool extends the existing rewriting of browser URLs for your Kanboard application using this plugin. [URL Rewriting](https://docs.kanboard.org/v1/admin/url-rewriting/) must be correctly configured for this plugin to function properly.
 
@@ -33,7 +33,7 @@ Go to `Settings` &#10562; URL Cleaner
 Compatibility
 -------------
 
-- Requires [Kanboard](https://github.com/fguillot/kanboard "Kanboard - Kanban Project Management Software") ≥`1.2.20`
+- Requires [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software") ≥`1.2.20`
 
 #### Other Plugins & Action Plugins
 - Compatible with [CostControl](https://github.com/aljawaid/CostControl)
@@ -51,7 +51,7 @@ Read the full [**Changelog**](../master/changelog.md "See changes")
 Installation
 ------------
 
-- **Install via the [Kanboard](https://github.com/fguillot/kanboard "Kanboard - Kanban Project Management Software") Plugin Directory**
+- **Install via the [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software") Plugin Directory**
   - _Go to:_
     - Kanboard: `Plugins` &#10562; `Plugin Directory`
   - _or with [PluginManager](https://github.com/aljawaid/PluginManager) installed:_
