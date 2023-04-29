@@ -1,6 +1,17 @@
 <h1 name="readme-top">URLCleaner</h1>
-
-![GitHub All Releases](https://img.shields.io/github/downloads/aljawaid/URLCleaner/total?style=for-the-badge "GitHub All Downloads") - **_A plugin for [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software")_**
+<p align="center">
+    <img src="https://img.shields.io/github/v/release/aljawaid/URLCleaner?style=for-the-badge&color=brightgreen" alt="GitHub Latest Release (by date)" title="GitHub Latest Release (by date)">
+    <img src="https://img.shields.io/github/downloads/aljawaid/URLCleaner/total?style=for-the-badge&color=orange" alt="GitHub All Releases" title="GitHub All Downloads">
+    <img src="https://img.shields.io/github/directory-file-count/aljawaid/URLCleaner?style=for-the-badge&color=orange" alt="GitHub Repository File Count" title="GitHub Repository File Count">
+    <img src="https://img.shields.io/github/repo-size/aljawaid/URLCleaner?style=for-the-badge&color=orange" alt="GitHub Repository Size" title="GitHub Repository Size">
+    <img src="https://img.shields.io/github/languages/code-size/aljawaid/URLCleaner?style=for-the-badge&color=orange" alt="GitHub Code Size" title="GitHub Code Size">
+</p>
+<p align="center">
+    <img src="https://img.shields.io/github/discussions/aljawaid/URLCleaner?style=for-the-badge&color=blue" alt="GitHub Discussions" title="GitHub Discussions">
+    <img src="https://img.shields.io/github/commits-since/aljawaid/URLCleaner/latest?include_prereleases&style=for-the-badge&color=blue" alt="GitHub Commits Since Last Release" title="GitHub Commits Since Last Release">
+    <img src="https://img.shields.io/github/commit-activity/m/aljawaid/URLCleaner?style=for-the-badge&color=blue" alt="GitHub Commit Monthly Activity" title="GitHub Commit Monthly Activity">
+    <a href="https://github.com/kanboard/kanboard" title="Kanboard - Kanban Project Management Software"><img src="https://img.shields.io/badge/Plugin%20for-kanboard-D40000?style=for-the-badge" alt="Kanboard"></a>
+</p>
 
 This simple tool extends the existing rewriting of browser URLs for your Kanboard application using this plugin. [URL Rewriting](https://docs.kanboard.org/v1/admin/url-rewriting/) must be correctly configured for this plugin to function properly.
 
