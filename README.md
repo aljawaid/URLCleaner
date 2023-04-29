@@ -1,8 +1,10 @@
-# URLCleaner
+<h1 name="readme-top">URLCleaner</h1>
+
 ![GitHub All Releases](https://img.shields.io/github/downloads/aljawaid/URLCleaner/total?style=for-the-badge "GitHub All Downloads") - **_A plugin for [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software")_**
 
 This simple tool extends the existing rewriting of browser URLs for your Kanboard application using this plugin. [URL Rewriting](https://docs.kanboard.org/v1/admin/url-rewriting/) must be correctly configured for this plugin to function properly.
 
+<p align="right">[<a href="#readme-bottom">&#8595; Bottom</a>]</p>
 
 ## Features
 
@@ -11,6 +13,7 @@ This simple tool extends the existing rewriting of browser URLs for your Kanboar
   - Plugin Compatibility:
   - [Bigboard](https://github.com/TimoStahl/kanboard_plugin_bigboard), [Wiki](https://github.com/funktechno/kanboard-plugin-wiki), [Calendar](https://github.com/kanboard/plugin-calendar), [MetaMagik](https://github.com/creecros/MetaMagik)
 
+<p align="right">[<a href="#readme-bottom">&#8595; Bottom</a>] [<a href="#readme-top">&#8593; Top</a>]</p>
 
 ## Screenshots
 
@@ -20,11 +23,13 @@ This simple tool extends the existing rewriting of browser URLs for your Kanboar
 
 ![URL Management](../master/screenshot-url-cleaner-plugins.png)
 
+<p align="right">[<a href="#readme-bottom">&#8595; Bottom</a>] [<a href="#readme-top">&#8593; Top</a>]</p>
 
 ## Usage
 
 Go to `Settings` &#10562; URL Cleaner
 
+<p align="right">[<a href="#readme-bottom">&#8595; Bottom</a>] [<a href="#readme-top">&#8593; Top</a>]</p>
 
 ## Installation & Compatibility
 
@@ -54,13 +59,18 @@ Go to `Settings` &#10562; URL Cleaner
 
 </details>
 
+<p align="right">[<a href="#readme-bottom">&#8595; Bottom</a>] [<a href="#readme-top">&#8593; Top</a>]</p>
 
 ## Authors & Contributors
 
 - [@aljawaid](https://github.com/aljawaid) - Author
 - _Contributors welcome_
 
+<p align="right">[<a href="#readme-bottom">&#8595; Bottom</a>] [<a href="#readme-top">&#8593; Top</a>]</p>
 
 ## License
 
 - This project is distributed under the [MIT License](../master/LICENSE "Read The MIT license")
+
+<a name="readme-bottom"></a>
+<p align="right">[<a href="#readme-top">&#8593; Top</a>]</p>
