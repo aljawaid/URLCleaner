@@ -3,16 +3,12 @@
 
 ## v1.6
 
-### What's Changed
-
 _(most recent changes are listed on top):_
 - FIX: Update Kanboard Links
 - NEW: Add CostControl Compatibility - disable routes and show badge if CostControl is installed - fixes #4
 
 
 ## v1.5
-
-### What's Changed
 
 _(most recent changes are listed on top):_
 - Add route `/settings/link-labels/:link_id/delete`
@@ -27,8 +23,6 @@ _(most recent changes are listed on top):_
 
 
 ## v1.0
-
-### What's Changed
 
 _(most recent changes are listed on top):_
 - Initial release
