@@ -38,9 +38,11 @@ This simple tool extends the existing rewriting of browser URLs for your Kanboar
 ## Features
 
 - Extend core routes into clean URLs around the site
-- Extend selected plugin routes into clean URLs
-  - Plugin Compatibility:
-  - [Bigboard](https://github.com/TimoStahl/kanboard_plugin_bigboard), [Wiki](https://github.com/funktechno/kanboard-plugin-wiki), [Calendar](https://github.com/kanboard/plugin-calendar), [MetaMagik](https://github.com/creecros/MetaMagik)
+- Convert selected plugin routes into clean URLs
+  - [Bigboard](https://github.com/TimoStahl/kanboard_plugin_bigboard)
+  - [Wiki](https://github.com/funktechno/kanboard-plugin-wiki)
+  - [Calendar](https://github.com/kanboard/plugin-calendar)
+  - [MetaMagik](https://github.com/creecros/MetaMagik)
 
 <p align="right">[<a href="#user-content-readme-bottom">&#8595; Bottom</a>] [<a href="#features">&#8592; Previous</a>] [<a href="#usage">&#8594; Next</a>] [<a href="#user-content-readme-top">&#8593; Top</a>]</p>
 
