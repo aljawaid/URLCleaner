@@ -25,7 +25,6 @@ class Plugin extends Base
         if ($this->configModel->get('clean-url-options', '') == 'enable') {
             // CORE
             $this->route->addRoute('/project/:project_id/task/:task_id/move', 'TaskMovePositionController', 'show');
-            $this->route->addRoute('/my-activity', 'ActivityController', 'user');
             $this->route->addRoute('/project/:project_id/overview/:search', 'ProjectOverviewController', 'show');
             $this->route->addRoute('/user/:user_id/notifications/show', 'WebNotificationController', 'show');
             $this->route->addRoute('/project/:project_id/board/:search', 'BoardViewController', 'show');
