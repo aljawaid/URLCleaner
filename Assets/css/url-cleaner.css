@@ -36,12 +36,6 @@
 .pp-dark-green { color: var(--pp-green-dark); fill: var(--pp-green-dark); }
 .pp-orange { color: var(--pp-orange); fill: var(--pp-orange); }
 
-/*a, details, summary, i, img, table, tr, svg, figure, button {
-    transition: var(--transition-url-cleaner);
-}*/
-
-/*a:hover { color: var(--pp-red-alt-2) !important; }*/
-
 .display-none, .d-none { display: none !important; }
 
 .font-weight-bold { font-weight: 600; }
@@ -119,7 +113,7 @@
     display: inline-block;
     border-radius: var(--border-radius-url-cleaner);
     padding: 5px 15px;
-    border: 1px solid #888;
+    border: 1px solid #888888;
     width: auto;
 }
 
@@ -145,7 +139,7 @@
     border-radius: var(--border-radius-url-cleaner);
     border: 1px solid var(--blue-icon-dark);
     padding: 0 4px;
-    font-weight: 700;
+    font-weight: bold;
     background-color: var(--pp-blue);
     color: var(--pp-white);
 }
@@ -189,7 +183,7 @@
     font-size: .7em;
     padding: 0 4px;
     margin-left: 3px;
-    font-weight: 700;
+    font-weight: bold;
     background-color: var(--pp-blue);
     color: var(--pp-white);
 }
@@ -228,11 +222,11 @@
 span.plugin-override {
     float: right;
     font-size: .7em;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #FFA500;
     border-radius: var(--border-radius-url-cleaner);
     padding: 1px 4px;
-    color: #444;
+    color: #444444;
     font-weight: 700;
     cursor: default;
 }
