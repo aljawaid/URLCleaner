@@ -14,10 +14,10 @@
     --pp-green-dark: #055D20;
     --pp-orange: #FF6500;
     --blue-icon-dark: #034CA6;
-    --button-blue-gradient: linear-gradient(to bottom, #7892c2 80%, #476e9e 100%);
+    --button-blue-gradient: linear-gradient(to bottom, #7892C2 80%, #476E9E 100%);
     --blue-border-gradient-match: #476E9E;
     --button-background-delete: #D05C84;
-    --page-margin-url-cleaner: 0px 10px 10px 10px;
+    --page-margin-url-cleaner: 0 10px 10px 10px;
     --border-radius-url-cleaner: 3px;
     --panel-background-url-cleaner: #EEEEEE;
     --transition-url-cleaner: ease-in-out all .3s;
@@ -227,6 +227,6 @@ span.plugin-override {
     border-radius: var(--border-radius-url-cleaner);
     padding: 1px 4px;
     color: #444444;
-    font-weight: 700;
+    font-weight: bold;
     cursor: default;
 }

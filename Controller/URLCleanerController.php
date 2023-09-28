@@ -38,7 +38,7 @@ class URLCleanerController extends \Kanboard\Controller\PluginController
      */
     public function save()
     {
-        $values =  $this->request->getValues();
+        $values = $this->request->getValues();
         $redirect = $this->request->getStringParam('redirect', 'application');
 
         if ($this->configModel->save($values)) {
