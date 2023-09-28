@@ -7,7 +7,9 @@ use Kanboard\Core\Plugin\Directory;
 
 /**
  * Plugin URLCleaner
+ *
  * Class URLCleanerController
+ * @package  Kanboard\Controller
  * @author aljawaid
  */
 
@@ -31,7 +33,7 @@ class URLCleanerController extends \Kanboard\Controller\PluginController
     }
 
     /**
-     * Save settings
+     * Save Settings
      *
      */
     public function save()

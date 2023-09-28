@@ -4,8 +4,22 @@ namespace Kanboard\Plugin\URLCleaner\Helper;
 
 use Kanboard\Core\Base;
 
+/**
+ * Plugin URLCleaner
+ * Class CleanURLHelper
+ *
+ * @package  Plugin\URLCleaner\Helper
+ * @author   aljawaid
+ */
 class CleanURLHelper extends Base
 {
+    /**
+     * Get Before and After Routes
+     *
+     * @see     url-cleaner.php
+     * @return  string
+     * @author  aljawaid
+     */
     public function newCoreRoutes()
     {
         return array(
