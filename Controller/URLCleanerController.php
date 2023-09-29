@@ -35,7 +35,7 @@ class URLCleanerController extends \Kanboard\Controller\PluginController
      * Save Settings
      *
      * Use the save function for forms
-     * @see     ConfgiController.php
+     * @see     ConfigController.php
      * @author  Frederic Guillot
      */
     public function save()

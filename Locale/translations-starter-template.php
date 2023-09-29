@@ -16,7 +16,7 @@ return array(
     'URL Cleaner' => '',
     'This simple tool extends the rewriting of browser URLs for your Kanboard application. Sanitize those long URLs automatically creating neat pretty easy to remember bookmarks. This plugin extends URLs from the core and from plugins. URL Rewriting must be correctly configured for this plugin to function properly.' => '',
     //
-    // config/urlcleaner.php
+    // config/url-cleaner.php
     //
     'URL Management' => '',
     'URLs are sanitized based on routes and activities within the application. Clean URLs improve the usability and accessibility of a website encouraging consistency and productivity. Learn more about clean URLs on Wikipedia.' => '',
