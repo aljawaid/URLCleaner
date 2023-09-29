@@ -10,7 +10,7 @@ use Kanboard\Core\Plugin\Directory;
  *
  * Class URLCleanerController
  * @package  Kanboard\Controller
- * @author aljawaid
+ * @author   aljawaid
  */
 
 class URLCleanerController extends \Kanboard\Controller\PluginController
@@ -24,7 +24,6 @@ class URLCleanerController extends \Kanboard\Controller\PluginController
      * Use: $this->helper->layout->plugin for plugin menu sidebar
      * @access public
      */
-
     public function show()
     {
         $this->response->html($this->helper->layout->config('uRLCleaner:config/url-cleaner', array(
@@ -35,6 +34,9 @@ class URLCleanerController extends \Kanboard\Controller\PluginController
     /**
      * Save Settings
      *
+     * Use the save function for forms
+     * @see     ConfgiController.php
+     * @author  Frederic Guillot
      */
     public function save()
     {
