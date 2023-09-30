@@ -37,7 +37,7 @@ This simple tool extends the existing rewriting of browser URLs for your Kanboar
 
 ## Features
 
-- Extend core routes into clean URLs around the site
+- Extend core routes into clean URLs around the site for older application versions
 - Convert selected plugin routes into clean URLs
   - [Bigboard](https://github.com/TimoStahl/kanboard_plugin_bigboard)
   - [Wiki](https://github.com/funktechno/kanboard-plugin-wiki)
