@@ -34,7 +34,7 @@ return array(
     'Disable Clean URLs' => '',
     'Save Settings' => '',
     'Application URLs' => '',
-    'The list below extends existing routes throughout the application' => '',
+    'The list below extends existing routes throughout the application. These routes are merged into the core application in the latest version.' => '',
     'Before [Route]' => '',
     'After [Clean URL]' => '',
     'Plugin URLs' => '',
