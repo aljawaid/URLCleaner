@@ -24,37 +24,40 @@ class Plugin extends Base
 
         if ($this->configModel->get('clean-url-options', '') == 'enable') {
             // CORE
-            $this->route->addRoute('/project/:project_id/task/:task_id/move', 'TaskMovePositionController', 'show');
-            $this->route->addRoute('/project/:project_id/overview/:search', 'ProjectOverviewController', 'show');
-            $this->route->addRoute('/user/:user_id/notifications/show', 'WebNotificationController', 'show');
-            $this->route->addRoute('/project/:project_id/board/:search', 'BoardViewController', 'show');
-            $this->route->addRoute('/project/:project_id/task/:task_id/edit', 'TaskModificationController', 'edit');
-            $this->route->addRoute('/settings/email', 'ConfigController', 'email');
-            $this->route->addRoute('/settings/link-labels', 'LinkController', 'show');
-            $this->route->addRoute('/settings/link-labels/add', 'LinkController', 'create');
-            $this->route->addRoute('/settings/link-labels/:link_id/edit', 'LinkController', 'edit');
-            $this->route->addRoute('/settings/link-labels/:link_id/delete', 'LinkController', 'confirm');
-            if (!file_exists('plugins/CostControl')) {
-                $this->route->addRoute('/settings/currencies/rates', 'CurrencyController', 'show');
-                $this->route->addRoute('/settings/currencies/add', 'CurrencyController', 'create');
-                $this->route->addRoute('/settings/currencies/change', 'CurrencyController', 'change');
+            if (APP_VERSION < '1.2.28') {
+                $this->route->addRoute('/my-activity', 'ActivityController', 'user');
+                $this->route->addRoute('/project/:project_id/task/:task_id/move', 'TaskMovePositionController', 'show');
+                $this->route->addRoute('/project/:project_id/overview/:search', 'ProjectOverviewController', 'show');
+                $this->route->addRoute('/project/:project_id/task/:task_id/edit', 'TaskModificationController', 'edit');
+                $this->route->addRoute('/project/:project_id/task/:task_id/close', 'TaskStatusController', 'close');
+                $this->route->addRoute('/project/:project_id/task/:task_id/email', 'TaskMailController', 'create');
+                $this->route->addRoute('/project/:project_id/task/:task_id/duplicate', 'TaskDuplicationController', 'duplicate');
+                $this->route->addRoute('/project/:project_id/task/:task_id/copy', 'TaskDuplicationController', 'copy');
+                $this->route->addRoute('/project/:project_id/task/:task_id/move-to-project', 'TaskDuplicationController', 'move');
+                $this->route->addRoute('/project/:project_id/task/:task_id/files/screenshots/attach', 'TaskFileController', 'screenshot');
+                $this->route->addRoute('/project/:project_id/task/:task_id/files/attach', 'TaskFileController', 'create');
+                $this->route->addRoute('/project/:project_id/task/:task_id/files/screenshots/add', 'TaskPopoverController', 'screenshot');
+                $this->route->addRoute('/project/:project_id/task/:task_id/link/external/add', 'TaskExternalLinkController', 'find');
+                $this->route->addRoute('/project/:project_id/task/:task_id/link/internal/add', 'TaskInternalLinkController', 'create');
+                $this->route->addRoute('/project/:project_id/task/:task_id/comments/add', 'CommentController', 'create');
+                $this->route->addRoute('/project/:project_id/task/:task_id/subtask/add', 'SubtaskController', 'create');
+                $this->route->addRoute('/project/:project_id/task/:task_id/recurrence/edit', 'TaskRecurrenceController', 'edit');
+                $this->route->addRoute('/project/:project_id/redirect/:redirect/task/:task_id/delete', 'TaskSuppressionController', 'confirm');
+                $this->route->addRoute('/project/:project_id/task/:task_id/delete', 'TaskSuppressionController', 'confirm');
+                $this->route->addRoute('/project/:project_id/board/:search', 'BoardViewController', 'show');
+                $this->route->addRoute('/project/:project_id/task/list/:search', 'TaskListController', 'show');
+                $this->route->addRoute('/user/:user_id/notifications/show', 'WebNotificationController', 'show');
+                $this->route->addRoute('/settings/email', 'ConfigController', 'email');
+                if (!file_exists('plugins/CostControl')) {
+                    $this->route->addRoute('/settings/currencies/rates', 'CurrencyController', 'show');
+                    $this->route->addRoute('/settings/currencies/add', 'CurrencyController', 'create');
+                    $this->route->addRoute('/settings/currencies/change', 'CurrencyController', 'change');
+                }
+                $this->route->addRoute('/settings/link-labels', 'LinkController', 'show');
+                $this->route->addRoute('/settings/link-labels/add', 'LinkController', 'create');
+                $this->route->addRoute('/settings/link-labels/:link_id/edit', 'LinkController', 'edit');
+                $this->route->addRoute('/settings/link-labels/:link_id/delete', 'LinkController', 'confirm');
             }
-            $this->route->addRoute('/project/:project_id/task/list/:search', 'TaskListController', 'show');
-            $this->route->addRoute('/project/:project_id/task/:task_id/recurrence/edit', 'TaskRecurrenceController', 'edit');
-            $this->route->addRoute('/project/:project_id/task/:task_id/subtask/add', 'SubtaskController', 'create');
-            $this->route->addRoute('/project/:project_id/task/:task_id/link/internal/add', 'TaskInternalLinkController', 'create');
-            $this->route->addRoute('/project/:project_id/task/:task_id/link/external/add', 'TaskExternalLinkController', 'find');
-            $this->route->addRoute('/project/:project_id/task/:task_id/comments/add', 'CommentController', 'create');
-            $this->route->addRoute('/project/:project_id/task/:task_id/files/attach', 'TaskFileController', 'create');
-            $this->route->addRoute('/project/:project_id/task/:task_id/files/screenshots/attach', 'TaskFileController', 'screenshot');
-            $this->route->addRoute('/project/:project_id/task/:task_id/files/screenshots/add', 'TaskPopoverController', 'screenshot');
-            $this->route->addRoute('/project/:project_id/task/:task_id/duplicate', 'TaskDuplicationController', 'duplicate');
-            $this->route->addRoute('/project/:project_id/task/:task_id/copy', 'TaskDuplicationController', 'copy');
-            $this->route->addRoute('/project/:project_id/task/:task_id/move-to-project', 'TaskDuplicationController', 'move');
-            $this->route->addRoute('/project/:project_id/task/:task_id/email', 'TaskMailController', 'create');
-            $this->route->addRoute('/project/:project_id/task/:task_id/close', 'TaskStatusController', 'close');
-            $this->route->addRoute('/project/:project_id/redirect/:redirect/task/:task_id/delete', 'TaskSuppressionController', 'confirm');
-            $this->route->addRoute('/project/:project_id/task/:task_id/delete', 'TaskSuppressionController', 'confirm');
 
             //PLUGINS
             $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
