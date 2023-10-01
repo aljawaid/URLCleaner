@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v2.0
+
+_(most recent changes are listed on top):_
+- FIX: Add Hint to Core Section for Latest Version - #6
+- NEW: Apply Core Routes for Older Versions - all core routes merged into the core since v1.2.28 - keep routes for older versions - relates to 1f6069a - fixes #6
+- FIX: Conflicting Route for KB 1.2.28+ - fixes #6
+- FIX: Code Syntax
+- FIX: CSS Code Syntax
+- FIX: README Navigation Links for GitHub
+- FIX: Markdown Syntax
+- FIX: Code Syntax
+- NEW: Add Footer Badges to README.md
+- NEW: Add Section Navigation Links to README.md
+- NEW: Add Badges to README.md
+- NEW: Add README Page Navigation Links
+- FIX: Content Flow for README.md
+
+
 ## v1.6
 
 _(most recent changes are listed on top):_
