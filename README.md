@@ -31,18 +31,25 @@
     </a>
 </p>
 
-This simple tool extends the existing rewriting of browser URLs for your Kanboard application using this plugin. [URL Rewriting](https://docs.kanboard.org/v1/admin/url-rewriting/) must be correctly configured for this plugin to function properly.
+URLCleaner adds compatibility aliases for supported Kanboard plugins when they do not already provide a clean route. Native Kanboard routes are displayed for reference and are never replaced. [URL rewriting](https://docs.kanboard.org/v1/admin/url-rewriting/) must be configured before aliases can be enabled.
 
 <p align="right">[<a href="#user-content-readme-bottom">&#8595; Bottom</a>] [<a href="#screenshots">&#8594; Next</a>] [<a href="#user-content-readme-top">&#8593; Top</a>]</p>
 
 ## Features
 
-- Extend core routes into clean URLs around the site for older application versions
-- Convert selected plugin routes into clean URLs
+- Show current native Kanboard routes without registering or overriding them
+- Add aliases only when the related plugin is installed, its controller action exists and no native route is available
+- Restrict application-wide settings to Kanboard administrators
+- Validate settings submissions and persist only the URLCleaner option
+- Provide a responsive settings page with automatic light and dark presentation
+- Respect reduced-motion preferences while retaining smooth hover and focus transitions
+- Support clean aliases for:
   - [Bigboard](https://github.com/TimoStahl/kanboard_plugin_bigboard)
   - [Wiki](https://github.com/funktechno/kanboard-plugin-wiki)
-  - [Calendar](https://github.com/kanboard/plugin-calendar)
+  - [Calendar](https://github.com/kanboard/plugin-calendar) (upstream repository archived)
   - [MetaMagik](https://github.com/creecros/MetaMagik)
+
+URLCleaner checks these integrations at startup. Unsupported, missing or incompatible plugins are ignored instead of receiving unusable routes.
 
 <p align="right">[<a href="#user-content-readme-bottom">&#8595; Bottom</a>] [<a href="#features">&#8592; Previous</a>] [<a href="#usage">&#8594; Next</a>] [<a href="#user-content-readme-top">&#8593; Top</a>]</p>
 
@@ -58,7 +65,13 @@ This simple tool extends the existing rewriting of browser URLs for your Kanboar
 
 ## Usage
 
-Go to `Settings` &#10562; URL Cleaner
+1. Configure URL rewriting for Kanboard.
+2. Sign in as an application administrator.
+3. Go to `Settings` &#10562; `URL Cleaner`.
+4. Review the detected native and installed-plugin routes.
+5. Enable plugin aliases and save the setting.
+
+If URL rewriting is unavailable, URLCleaner shows setup guidance and does not register aliases.
 
 <p align="right">[<a href="#user-content-readme-bottom">&#8595; Bottom</a>] [<a href="#screenshots">&#8592; Previous</a>] [<a href="#authors--contributors">&#8594; Next</a>] [<a href="#user-content-readme-top">&#8593; Top</a>]</p>
 
@@ -74,10 +87,12 @@ Go to `Settings` &#10562; URL Cleaner
 <details>
     <summary><strong>Compatibility</strong></summary>
 
-- Requires [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software") ≥`1.2.20`
+- Requires [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software") ≥`1.2.54`
+- Regression-tested with PHP `8.2`, `8.3`, `8.4` and `8.5`
 - **Other Plugins & Action Plugins**
-  - _No known issues_
-  - Compatible with [CostControl](https://github.com/aljawaid/CostControl)
+  - Aliases are registered only for supported plugins that are currently installed
+  - Existing native plugin routes take precedence
+  - Calendar support is retained for existing installations, but its upstream repository is archived
 - **Core Files & Templates**
   - _No template overrides_
   - _No database changes_
@@ -86,7 +101,9 @@ Go to `Settings` &#10562; URL Cleaner
 <details>
     <summary><strong>Translations</strong></summary>
 
-- _Starter template available_
+- English (United Kingdom)
+- English (United States)
+- Starter template available for additional languages
 
 </details>
 

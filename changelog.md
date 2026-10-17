@@ -1,6 +1,21 @@
 # Changelog
 
 
+## v3.0.0
+
+_(unreleased):_
+- Rebuilt route discovery around Kanboard 1.2.54 native routes
+- Registered aliases only for installed supported plugins with available controller actions
+- Prevented URLCleaner from replacing native Kanboard or plugin routes
+- Restricted settings to application administrators and validated all settings submissions
+- Added responsive light and dark presentation with reduced-motion support
+- Added complete British and American English translation catalogues
+- Added focused permission, route, presentation, translation and integration regression checks
+- Added PHP 8.2 to 8.5 compatibility automation
+- Removed the unnecessary repository secret scan from the feature-focused linter workflow
+- No database changes
+
+
 ## v2.0
 
 _(most recent changes are listed on top):_
