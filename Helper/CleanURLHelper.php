@@ -5,275 +5,513 @@ namespace Kanboard\Plugin\URLCleaner\Helper;
 use Kanboard\Core\Base;
 
 /**
- * Plugin URLCleaner
- * Class CleanURLHelper
+ * Provides the single route registry used for alias registration and presentation.
  *
- * @package  Plugin\URLCleaner\Helper
- * @author   aljawaid
+ * Native Kanboard routes are informational only. Plugin aliases are registered only
+ * when the related plugin and controller action are available and no native route exists.
+ *
+ * Related test: tests/RouteContractTest.php
+ *
+ * @package Plugin\URLCleaner\Helper
+ * @author  aljawaid
  */
 class CleanURLHelper extends Base
 {
     /**
-     * Get Before and After Routes
+     * Register missing aliases for installed and supported plugins.
+     */
+    public function registerPluginRoutes()
+    {
+        foreach ($this->getPluginRouteDefinitions() as $definition) {
+            $loadedPlugin = $this->getLoadedPluginName($definition['plugin_name']);
+
+            if ($loadedPlugin === null || !$this->isPluginActionAvailable($loadedPlugin, $definition)) {
+                continue;
+            }
+
+            if ($this->findPluginUrl($definition, $loadedPlugin) !== '') {
+                continue;
+            }
+
+            $this->route->addRoute(
+                $definition['path'],
+                $definition['controller'],
+                $definition['action'],
+                $loadedPlugin
+            );
+        }
+    }
+
+    /**
+     * Return the current native Kanboard routes for the settings catalogue.
      *
-     * @see     url-cleaner.php
-     * @return  string
-     * @author  aljawaid
+     * @return array
      */
     public function newCoreRoutes()
     {
+        $routes = array();
+
+        foreach ($this->getCoreRouteDefinitions() as $definition) {
+            $route = $this->buildCatalogueRoute($definition);
+
+            if ($route !== null) {
+                $routes[] = $route;
+            }
+        }
+
+        return $routes;
+    }
+
+    /**
+     * Return clean routes that are actually available for installed plugins.
+     *
+     * @return array
+     */
+    public function newPluginRoutes()
+    {
+        $routes = array();
+
+        foreach ($this->getPluginRouteDefinitions() as $definition) {
+            $loadedPlugin = $this->getLoadedPluginName($definition['plugin_name']);
+
+            if ($loadedPlugin === null || !$this->isPluginActionAvailable($loadedPlugin, $definition)) {
+                continue;
+            }
+
+            $route = $this->buildPluginCatalogueRoute($definition, $loadedPlugin);
+
+            if ($route !== null) {
+                $route['plugin'] = $definition['plugin_name'];
+                $routes[] = $route;
+            }
+        }
+
+        return $routes;
+    }
+
+    /**
+     * Expose plugin definitions for focused compatibility tests.
+     *
+     * @return array
+     */
+    public function getPluginRouteDefinitions()
+    {
         return array(
-            // Default key for each will start from 0
-            array(
-                "before_route" => "?controller=TaskMovePositionController&action=show&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/move",
+            $this->pluginRoute('Bigboard', 'Bigboard', 'Bigboard', 'index', '/bigboard'),
+
+            $this->pluginRoute('Wiki', 'wiki', 'WikiController', 'index', '/wiki/index'),
+            $this->pluginRoute('Wiki', 'wiki', 'WikiController', 'show', '/wiki/project/:project_id', array(
+                'project_id' => 37,
+            )),
+            $this->pluginRoute('Wiki', 'wiki', 'WikiController', 'create', '/wiki/project/:project_id/create', array(
+                'project_id' => 37,
+            )),
+            $this->pluginRoute(
+                'Wiki',
+                'wiki',
+                'WikiController',
+                'detail',
+                '/wiki/project/:project_id/detail/:wiki_id',
+                array('project_id' => 37, 'wiki_id' => 8)
             ),
-            array(
-                "before_route" => "?controller=ActivityController&action=user",
-                "after_route" => "/my-activity"
+            $this->pluginRoute('Wiki', 'wiki', 'WikiController', 'edit', '/wiki/edit/:wiki_id', array(
+                'wiki_id' => 8,
+            )),
+            $this->pluginRoute(
+                'Wiki',
+                'wiki',
+                'WikiFileController',
+                'create',
+                '/wiki/file/:project_id/create/:wiki_id',
+                array('project_id' => 37, 'wiki_id' => 8)
             ),
-            array(
-                "before_route" => "?controller=ProjectOverviewController&action=show&project_id=37&search=status%3Aopen",
-                "after_route" => "/project/37/overview/status:open"
+            $this->pluginRoute(
+                'Wiki',
+                'wiki',
+                'WikiController',
+                'confirm',
+                '/wiki/project/:project_id/remove/:wiki_id',
+                array('project_id' => 37, 'wiki_id' => 8)
             ),
-            array(
-                "before_route" => "?controller=WebNotificationController&action=show&user_id=1",
-                "after_route" => "/user/1/notifications/show"
+            $this->pluginRoute(
+                'Wiki',
+                'wiki',
+                'WikiController',
+                'editions',
+                '/wiki/project/:project_id/editions/:wiki_id',
+                array('project_id' => 37, 'wiki_id' => 8)
             ),
-            array(
-                "before_route" => "?controller=BoardViewController&action=show&project_id=37&search=status%3Aopen",
-                "after_route" => "/board/37/status:open"
+            $this->pluginRoute(
+                'Wiki',
+                'wiki',
+                'WikiController',
+                'confirm_restore',
+                '/wiki/project/:project_id/restore/:wiki_id/:edition',
+                array('project_id' => 37, 'wiki_id' => 8, 'edition' => 5)
             ),
-            array(
-                "before_route" => "?controller=TaskModificationController&action=edit&task_id=629&project_id=34",
-                "after_route" => "/project/34/task/629/edit"
+
+            $this->pluginRoute('Calendar', 'Calendar', 'CalendarController', 'user', '/my-calendar'),
+            $this->pluginRoute('Calendar', 'Calendar', 'ConfigController', 'show', '/settings/calendar'),
+            $this->pluginRoute(
+                'Calendar',
+                'Calendar',
+                'CalendarController',
+                'project',
+                '/project/:project_id/calendar/:search',
+                array('project_id' => 37, 'search' => 'status:open')
             ),
-            array(
-                "before_route" => "?controller=ConfigController&action=email",
-                "after_route" => "/settings/email"
+
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'MetadataTypesController',
+                'config',
+                '/settings/custom-fields'
             ),
-            array(
-                "before_route" => "?controller=LinkController&action=show",
-                "after_route" => "/settings/link-labels"
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'MetadataTypesController',
+                'editType',
+                '/settings/custom-fields/:key/edit',
+                array('key' => 3)
             ),
-            array(
-                "before_route" => "?controller=LinkController&action=create",
-                "after_route" => "/settings/link-labels/add"
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'MetadataTypesController',
+                'confirmTask',
+                '/settings/custom-fields/:key/delete',
+                array('key' => 3)
             ),
-            array(
-                "before_route" => "?controller=LinkController&action=edit&link_id=1",
-                "after_route" => "/settings/link-labels/1/edit"
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'MetadataController',
+                'project',
+                '/project/:project_id/metadata',
+                array('project_id' => 37)
             ),
-            array(
-                "before_route" => "?controller=LinkController&action=delete&link_id=1",
-                "after_route" => "/settings/link-labels/1/delete"
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'MetadataController',
+                'task',
+                '/project/:project_id/task/:task_id/metadata',
+                array('project_id' => 37, 'task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=CurrencyController&action=show",
-                "after_route" => "/settings/currencies/rates",
-                "moved_to" => "ContentCleaner",
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'MetadataController',
+                'user',
+                '/user/:user_id/metadata',
+                array('user_id' => 1)
             ),
-            array(
-                "before_route" => "?controller=CurrencyController&action=create",
-                "after_route" => "/settings/currencies/add",
-                "moved_to" => "ContentCleaner",
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'MetadataController',
+                'editUser',
+                '/user/:user_id/metadata/:key/edit',
+                array('user_id' => 1, 'key' => 'board.collapsed.12')
             ),
-            array(
-                "before_route" => "?controller=CurrencyController&action=change",
-                "after_route" => "/settings/currencies/change",
-                "moved_to" => "ContentCleaner",
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'MetadataController',
+                'confirmUser',
+                '/user/:user_id/metadata/:key/delete',
+                array('user_id' => 1, 'key' => 'board.collapsed.14')
             ),
-            array(
-                "before_route" => "?controller=TaskListController&action=show&project_id=37&search=status%3Aopen",
-                "after_route" => "/project/37/task/liststatus:open"
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'AnalyticExtensionController',
+                'fieldTotalDistribution',
+                '/project/:project_id/analytics/metadata/total',
+                array('project_id' => 37)
             ),
-            array(
-                "before_route" => "?controller=TaskRecurrenceController&action=edit&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/recurrence/edit"
-            ),
-            array(
-                "before_route" => "?controller=SubtaskController&action=create&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/subtask/add"
-            ),
-            array(
-                "before_route" => "?controller=TaskInternalLinkController&action=create&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/link/internal/add"
-            ),
-            array(
-                "before_route" => "?controller=TaskExternalLinkController&action=find&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/link/external/add"
-            ),
-            array(
-                "before_route" => "?controller=CommentController&action=create&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/comments/add"
-            ),
-            array(
-                "before_route" => "?controller=TaskFileController&action=create&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/files/attach"
-            ),
-            array(
-                "before_route" => "?controller=TaskFileController&action=screenshot&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/files/screenshots/attach"
-            ),
-            array(
-                "before_route" => "?controller=TaskPopoverController&action=screenshot&task_id=607&project_id=37",
-                "after_route" => "/project/37/task/607/files/screenshots/add"
-            ),
-            array(
-                "before_route" => "?controller=TaskDuplicationController&action=duplicate&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/duplicate"
-            ),
-            array(
-                "before_route" => "?controller=TaskDuplicationController&action=copy&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/copy"
-            ),
-            array(
-                "before_route" => "?controller=TaskDuplicationController&action=move&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/move-to-project"
-            ),
-            array(
-                "before_route" => "?controller=TaskMailController&action=create&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/email"
-            ),
-            array(
-                "before_route" => "?controller=TaskStatusController&action=close&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/close"
-            ),
-            array(
-                "before_route" => "?controller=TaskSuppressionController&action=confirm&task_id=662&project_id=37&redirect=board",
-                "after_route" => "/project/37/redirect/board/task/662/delete"
-            ),
-            array(
-                "before_route" => "?controller=TaskSuppressionController&action=confirm&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/delete"
+            $this->pluginRoute(
+                'MetaMagik',
+                'metaMagik',
+                'AnalyticExtensionController',
+                'fieldTotalDistributionRange',
+                '/project/:project_id/analytics/metadata/range',
+                array('project_id' => 37)
             ),
         );
     }
 
-    public function newPluginRoutes()
+    /**
+     * Define representative native routes without registering or overriding them.
+     *
+     * @return array
+     */
+    private function getCoreRouteDefinitions()
     {
         return array(
-            // Default key for each will start from 0
-            array(
-                "before_route" => "?controller=Bigboard&action=index&plugin=Bigboard",
-                "after_route" => "/bigboard",
-                "plugin" => "Bigboard"
+            $this->coreRoute('ActivityController', 'user', '?controller=ActivityController&action=user'),
+            $this->coreRoute(
+                'TaskMovePositionController',
+                'show',
+                '?controller=TaskMovePositionController&action=show&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=WikiController&action=index&plugin=Wiki",
-                "after_route" => "/help",
-                "plugin" => "Wiki"
+            $this->coreRoute(
+                'ProjectOverviewController',
+                'show',
+                '?controller=ProjectOverviewController&action=show&project_id=37&search=status%3Aopen',
+                array('project_id' => 37, 'search' => 'status:open')
             ),
-            array(
-                "before_route" => "?controller=WikiController&action=show&project_id=37&search=status%3Aopen&plugin=wiki",
-                "after_route" => "/help/project/37/show/status:open",
-                "plugin" => "Wiki"
+            $this->coreRoute(
+                'WebNotificationController',
+                'show',
+                '?controller=WebNotificationController&action=show&user_id=1',
+                array('user_id' => 1)
             ),
-            array(
-                "before_route" => "?controller=WikiController&action=create&plugin=wiki&project_id=37",
-                "after_route" => "/help/project/37/create",
-                "plugin" => "Wiki"
+            $this->coreRoute(
+                'BoardViewController',
+                'show',
+                '?controller=BoardViewController&action=show&project_id=37&search=status%3Aopen',
+                array('project_id' => 37, 'search' => 'status:open')
             ),
-            array(
-                "before_route" => "?controller=WikiController&action=detail&plugin=wiki&project_id=37&wiki_id=8",
-                "after_route" => "/help/project/37/page/8/show",
-                "plugin" => "Wiki"
+            $this->coreRoute(
+                'TaskModificationController',
+                'edit',
+                '?controller=TaskModificationController&action=edit&task_id=629',
+                array('task_id' => 629)
             ),
-            array(
-                "before_route" => "?controller=WikiController&action=edit&plugin=wiki&wiki_id=8",
-                "after_route" => "/help/page/8/edit",
-                "plugin" => "Wiki"
+            $this->coreRoute('ConfigController', 'email', '?controller=ConfigController&action=email'),
+            $this->coreRoute('LinkController', 'show', '?controller=LinkController&action=show'),
+            $this->coreRoute('LinkController', 'create', '?controller=LinkController&action=create'),
+            $this->coreRoute(
+                'LinkController',
+                'edit',
+                '?controller=LinkController&action=edit&link_id=1',
+                array('link_id' => 1)
             ),
-            array(
-                "before_route" => "?controller=WikiFileController&action=create&plugin=wiki&wiki_id=8&project_id=37",
-                "after_route" => "/help/project/37/page/8/attach",
-                "plugin" => "Wiki"
+            $this->coreRoute(
+                'LinkController',
+                'confirm',
+                '?controller=LinkController&action=confirm&link_id=1',
+                array('link_id' => 1)
             ),
-            array(
-                "before_route" => "?controller=WikiController&action=confirm&plugin=wiki&project_id=37&wiki_id=8",
-                "after_route" => "/help/project/37/page/8/delete",
-                "plugin" => "Wiki"
+            $this->coreRoute('CurrencyController', 'show', '?controller=CurrencyController&action=show'),
+            $this->coreRoute('CurrencyController', 'create', '?controller=CurrencyController&action=create'),
+            $this->coreRoute('CurrencyController', 'change', '?controller=CurrencyController&action=change'),
+            $this->coreRoute(
+                'TaskListController',
+                'show',
+                '?controller=TaskListController&action=show&project_id=37&search=status%3Aopen',
+                array('project_id' => 37, 'search' => 'status:open')
             ),
-            array(
-                "before_route" => "?controller=WikiController&action=editions&plugin=wiki&project_id=37&wiki_id=8",
-                "after_route" => "/help/project/37/page/8/editions",
-                "plugin" => "Wiki"
+            $this->coreRoute(
+                'TaskRecurrenceController',
+                'edit',
+                '?controller=TaskRecurrenceController&action=edit&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=WikiController&action=confirm_restore&plugin=wiki&project_id=37&wiki_id=8&edition=5",
-                "after_route" => "/help/project/37/page/8/editions/restore/5",
-                "plugin" => "Wiki"
+            $this->coreRoute(
+                'SubtaskController',
+                'create',
+                '?controller=SubtaskController&action=create&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=ConfigController&action=show&plugin=Wiki",
-                "after_route" => "/settings/wiki",
-                "plugin" => "Wiki"
+            $this->coreRoute(
+                'TaskInternalLinkController',
+                'create',
+                '?controller=TaskInternalLinkController&action=create&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=CalendarController&action=user&plugin=Calendar",
-                "after_route" => "/my-calendar",
-                "plugin" => "Calendar"
+            $this->coreRoute(
+                'TaskExternalLinkController',
+                'find',
+                '?controller=TaskExternalLinkController&action=find&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=ConfigController&action=show&plugin=Calendar",
-                "after_route" => "/settings/calendar",
-                "plugin" => "Calendar"
+            $this->coreRoute(
+                'CommentController',
+                'create',
+                '?controller=CommentController&action=create&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=CalendarController&action=project&project_id=37&search=status%3Aopen&plugin=Calendar",
-                "after_route" => "/project/37/calendar/status:open",
-                "plugin" => "Calendar"
+            $this->coreRoute(
+                'TaskFileController',
+                'create',
+                '?controller=TaskFileController&action=create&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=MetadataTypesController&action=config&plugin=MetaMagik",
-                "after_route" => "/settings/custom-fields",
-                "plugin" => "MetaMagik"
+            $this->coreRoute(
+                'TaskFileController',
+                'screenshot',
+                '?controller=TaskFileController&action=screenshot&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=MetadataTypesController&action=editType&plugin=metaMagik&key=3",
-                "after_route" => "/settings/custom-fields/3/edit",
-                "plugin" => "MetaMagik"
+            $this->coreRoute(
+                'TaskPopoverController',
+                'screenshot',
+                '?controller=TaskPopoverController&action=screenshot&task_id=607',
+                array('task_id' => 607)
             ),
-            array(
-                "before_route" => "?controller=MetadataTypesController&action=confirmTask&plugin=metaMagik&key=3",
-                "after_route" => "/settings/custom-fields/3/delete",
-                "plugin" => "MetaMagik"
+            $this->coreRoute(
+                'TaskDuplicationController',
+                'duplicate',
+                '?controller=TaskDuplicationController&action=duplicate&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=MetadataController&action=project&plugin=metaMagik&project_id=37",
-                "after_route" => "/project/37/metadata",
-                "plugin" => "MetaMagik"
+            $this->coreRoute(
+                'TaskDuplicationController',
+                'copy',
+                '?controller=TaskDuplicationController&action=copy&task_id=662&project_id=37',
+                array('task_id' => 662, 'project_id' => 37)
             ),
-            array(
-                "before_route" => "?controller=MetadataController&action=task&plugin=metaMagik&task_id=662&project_id=37",
-                "after_route" => "/project/37/task/662/metadata",
-                "plugin" => "MetaMagik"
+            $this->coreRoute(
+                'TaskDuplicationController',
+                'move',
+                '?controller=TaskDuplicationController&action=move&task_id=662&project_id=37',
+                array('task_id' => 662, 'project_id' => 37)
             ),
-            array(
-                "before_route" => "?controller=MetadataController&action=user&plugin=metaMagik&user_id=1",
-                "after_route" => "/user/1/metadata",
-                "plugin" => "MetaMagik"
+            $this->coreRoute(
+                'TaskMailController',
+                'create',
+                '?controller=TaskMailController&action=create&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=MetadataController&action=editUser&plugin=metaMagik&user_id=1&key=board.collapsed.12",
-                "after_route" => "/user/1/metadata/board.collapsed.12/edit",
-                "plugin" => "MetaMagik"
+            $this->coreRoute(
+                'TaskStatusController',
+                'close',
+                '?controller=TaskStatusController&action=close&task_id=662',
+                array('task_id' => 662)
             ),
-            array(
-                "before_route" => "?controller=MetadataController&action=confirmUser&plugin=metaMagik&user_id=1&key=board.collapsed.14",
-                "after_route" => "/user/1/metadata/board.collapsed.14/delete",
-                "plugin" => "MetaMagik"
+            $this->coreRoute(
+                'TaskSuppressionController',
+                'confirm',
+                '?controller=TaskSuppressionController&action=confirm&task_id=662&redirect=board',
+                array('task_id' => 662, 'redirect' => 'board')
             ),
-            array(
-                "before_route" => "?controller=AnalyticExtensionController&action=fieldTotalDistribution&plugin=metaMagik&project_id=37",
-                "after_route" => "/project/37/analytics/metadata/total",
-                "plugin" => "MetaMagik"
-            ),
-            array(
-                "before_route" => "?controller=AnalyticExtensionController&action=fieldTotalDistributionRange&plugin=metaMagik&project_id=37",
-                "after_route" => "/project/37/analytics/metadata/range",
-                "plugin" => "MetaMagik"
+            $this->coreRoute(
+                'TaskSuppressionController',
+                'confirm',
+                '?controller=TaskSuppressionController&action=confirm&task_id=662',
+                array('task_id' => 662)
             ),
         );
+    }
+
+    private function coreRoute($controller, $action, $beforeRoute, array $params = array())
+    {
+        return array(
+            'before_route' => $beforeRoute,
+            'controller' => $controller,
+            'action' => $action,
+            'params' => $params,
+            'route_key' => '',
+        );
+    }
+
+    private function pluginRoute(
+        $pluginName,
+        $routeKey,
+        $controller,
+        $action,
+        $path,
+        array $params = array()
+    ) {
+        $beforeRoute = '?controller=' . $controller . '&action=' . $action . '&plugin=' . $routeKey;
+
+        foreach ($params as $name => $value) {
+            $beforeRoute .= '&' . $name . '=' . rawurlencode((string) $value);
+        }
+
+        return array(
+            'plugin_name' => $pluginName,
+            'route_key' => $routeKey,
+            'controller' => $controller,
+            'action' => $action,
+            'path' => $path,
+            'params' => $params,
+            'before_route' => $beforeRoute,
+        );
+    }
+
+    private function buildCatalogueRoute(array $definition)
+    {
+        $url = $this->findUrl($definition);
+
+        if ($url === '') {
+            return null;
+        }
+
+        return array(
+            'before_route' => $definition['before_route'],
+            'after_route' => '/' . ltrim($url, '/'),
+        );
+    }
+
+    private function buildPluginCatalogueRoute(array $definition, $loadedPlugin)
+    {
+        $url = $this->findPluginUrl($definition, $loadedPlugin);
+
+        if ($url === '') {
+            return null;
+        }
+
+        return array(
+            'before_route' => $definition['before_route'],
+            'after_route' => '/' . ltrim($url, '/'),
+        );
+    }
+
+    private function findUrl(array $definition)
+    {
+        return $this->route->findUrl(
+            $definition['controller'],
+            $definition['action'],
+            $definition['params'],
+            $definition['route_key']
+        );
+    }
+
+    private function findPluginUrl(array $definition, $loadedPlugin)
+    {
+        $routeKeys = array_unique(array(
+            $loadedPlugin,
+            $definition['route_key'],
+            $definition['plugin_name'],
+        ));
+
+        foreach ($routeKeys as $routeKey) {
+            $url = $this->route->findUrl(
+                $definition['controller'],
+                $definition['action'],
+                $definition['params'],
+                $routeKey
+            );
+
+            if ($url !== '') {
+                return $url;
+            }
+        }
+
+        return '';
+    }
+
+    private function getLoadedPluginName($expectedName)
+    {
+        foreach (array_keys($this->pluginLoader->getPlugins()) as $pluginName) {
+            if (strcasecmp($pluginName, $expectedName) === 0) {
+                return $pluginName;
+            }
+        }
+
+        return null;
+    }
+
+    private function isPluginActionAvailable($loadedPlugin, array $definition)
+    {
+        $controllerClass = 'Kanboard\\Plugin\\' . $loadedPlugin . '\\Controller\\' . $definition['controller'];
+
+        return class_exists($controllerClass) && method_exists($controllerClass, $definition['action']);
     }
 }

@@ -2,8 +2,7 @@
 
 namespace Kanboard\Plugin\URLCleaner\Controller;
 
-use Kanboard\Controller\BaseController;
-use Kanboard\Core\Plugin\Directory;
+use Kanboard\Core\Controller\AccessForbiddenException;
 
 /**
  * Plugin URLCleaner
@@ -11,8 +10,9 @@ use Kanboard\Core\Plugin\Directory;
  * Class URLCleanerController
  * @package  Kanboard\Controller
  * @author   aljawaid
+ *
+ * Related test: tests/AuthorizationContractTest.php
  */
-
 class URLCleanerController extends \Kanboard\Controller\PluginController
 {
     /**
@@ -26,8 +26,13 @@ class URLCleanerController extends \Kanboard\Controller\PluginController
      */
     public function show()
     {
+        $this->requireAdmin();
+
         $this->response->html($this->helper->layout->config('uRLCleaner:config/url-cleaner', array(
             'title' => t('Settings') . ' &#10562; ' . t('URL Cleaner'),
+            'values' => array(
+                'clean-url-options' => $this->configModel->get('clean-url-options', 'disable'),
+            ),
         )));
     }
 
@@ -40,16 +45,32 @@ class URLCleanerController extends \Kanboard\Controller\PluginController
      */
     public function save()
     {
-        $values = $this->request->getValues();
-        $redirect = $this->request->getStringParam('redirect', 'application');
+        $this->requireAdmin();
+        $this->checkCSRFForm();
 
-        if ($this->configModel->save($values)) {
-            $this->languageModel->loadCurrentLanguage();
+        $values = $this->request->getValues();
+        $cleanUrlOption = isset($values['clean-url-options']) ? $values['clean-url-options'] : '';
+
+        if (!in_array($cleanUrlOption, array('enable', 'disable'), true)) {
+            $this->flash->failure(t('Select whether clean URLs should be enabled or disabled.'));
+        } elseif ($this->configModel->save(array('clean-url-options' => $cleanUrlOption))) {
             $this->flash->success(t('Settings saved successfully.'));
         } else {
             $this->flash->failure(t('Unable to save your settings.'));
         }
 
-        $this->response->redirect($this->helper->url->to('URLCleanerController', $redirect, ['plugin' => 'URLCleaner']));
+        $this->response->redirect($this->helper->url->to('URLCleanerController', 'show', array(
+            'plugin' => 'URLCleaner',
+        )));
+    }
+
+    /**
+     * Keep direct controller calls behind the same administrator boundary as the access map.
+     */
+    private function requireAdmin()
+    {
+        if (!$this->userSession->isAdmin()) {
+            throw new AccessForbiddenException();
+        }
     }
 }

@@ -3,101 +3,47 @@
 namespace Kanboard\Plugin\URLCleaner;
 
 use Kanboard\Core\Plugin\Base;
+use Kanboard\Core\Security\Role;
 use Kanboard\Core\Translator;
 
+/**
+ * Registers URLCleaner settings, helpers and compatibility-aware plugin routes.
+ *
+ * Related tests: tests/AuthorizationContractTest.php,
+ * tests/RouteContractTest.php and tests/PluginIntegrationTest.php.
+ */
 class Plugin extends Base
 {
     public function initialize()
     {
-        // CSS - Asset Hook
-        //  - Keep filename lowercase
+        // URL settings affect the whole application and must remain administrator-only.
+        $this->applicationAccessMap->add('URLCleanerController', '*', Role::APP_ADMIN);
+
+        // Keep the stylesheet globally available, but scope every selector to the settings page.
         $this->hook->on('template:layout:css', array('template' => 'plugins/URLCleaner/Assets/css/url-cleaner.css'));
 
-        // Views - Add Menu Item - Template Hook
-        //  - Override name should start lowercase e.g. pluginNameExampleCamelCase
+        // Add the administrator settings entry and its clean URL.
         $this->template->hook->attach('template:config:sidebar', 'uRLCleaner:config/sidebar');
-
-        // Extra Page - Routes
-        //  - Example: $this->route->addRoute('/my/custom/route', 'MyController', 'show', 'PluginNameExampleStudlyCaps');
-        //  - Must have the corresponding action in the matching controller
         $this->route->addRoute('/settings/url-cleaner', 'URLCleanerController', 'show', 'URLCleaner');
 
-        if ($this->configModel->get('clean-url-options', '') == 'enable') {
-            // CORE
-            if (APP_VERSION < '1.2.28') {
-                $this->route->addRoute('/my-activity', 'ActivityController', 'user');
-                $this->route->addRoute('/project/:project_id/task/:task_id/move', 'TaskMovePositionController', 'show');
-                $this->route->addRoute('/project/:project_id/overview/:search', 'ProjectOverviewController', 'show');
-                $this->route->addRoute('/project/:project_id/task/:task_id/edit', 'TaskModificationController', 'edit');
-                $this->route->addRoute('/project/:project_id/task/:task_id/close', 'TaskStatusController', 'close');
-                $this->route->addRoute('/project/:project_id/task/:task_id/email', 'TaskMailController', 'create');
-                $this->route->addRoute('/project/:project_id/task/:task_id/duplicate', 'TaskDuplicationController', 'duplicate');
-                $this->route->addRoute('/project/:project_id/task/:task_id/copy', 'TaskDuplicationController', 'copy');
-                $this->route->addRoute('/project/:project_id/task/:task_id/move-to-project', 'TaskDuplicationController', 'move');
-                $this->route->addRoute('/project/:project_id/task/:task_id/files/screenshots/attach', 'TaskFileController', 'screenshot');
-                $this->route->addRoute('/project/:project_id/task/:task_id/files/attach', 'TaskFileController', 'create');
-                $this->route->addRoute('/project/:project_id/task/:task_id/files/screenshots/add', 'TaskPopoverController', 'screenshot');
-                $this->route->addRoute('/project/:project_id/task/:task_id/link/external/add', 'TaskExternalLinkController', 'find');
-                $this->route->addRoute('/project/:project_id/task/:task_id/link/internal/add', 'TaskInternalLinkController', 'create');
-                $this->route->addRoute('/project/:project_id/task/:task_id/comments/add', 'CommentController', 'create');
-                $this->route->addRoute('/project/:project_id/task/:task_id/subtask/add', 'SubtaskController', 'create');
-                $this->route->addRoute('/project/:project_id/task/:task_id/recurrence/edit', 'TaskRecurrenceController', 'edit');
-                $this->route->addRoute('/project/:project_id/redirect/:redirect/task/:task_id/delete', 'TaskSuppressionController', 'confirm');
-                $this->route->addRoute('/project/:project_id/task/:task_id/delete', 'TaskSuppressionController', 'confirm');
-                $this->route->addRoute('/project/:project_id/board/:search', 'BoardViewController', 'show');
-                $this->route->addRoute('/project/:project_id/task/list/:search', 'TaskListController', 'show');
-                $this->route->addRoute('/user/:user_id/notifications/show', 'WebNotificationController', 'show');
-                $this->route->addRoute('/settings/email', 'ConfigController', 'email');
-                if (!file_exists('plugins/CostControl')) {
-                    $this->route->addRoute('/settings/currencies/rates', 'CurrencyController', 'show');
-                    $this->route->addRoute('/settings/currencies/add', 'CurrencyController', 'create');
-                    $this->route->addRoute('/settings/currencies/change', 'CurrencyController', 'change');
-                }
-                $this->route->addRoute('/settings/link-labels', 'LinkController', 'show');
-                $this->route->addRoute('/settings/link-labels/add', 'LinkController', 'create');
-                $this->route->addRoute('/settings/link-labels/:link_id/edit', 'LinkController', 'edit');
-                $this->route->addRoute('/settings/link-labels/:link_id/delete', 'LinkController', 'confirm');
-            }
-
-            //PLUGINS
-            $this->route->addRoute('/bigboard', 'Bigboard', 'index', 'Bigboard');
-            $this->route->addRoute('/help', 'WikiController', 'index', 'Wiki');
-            $this->route->addRoute('/help', 'WikiController', 'index', 'wiki');
-            $this->route->addRoute('/help/overview/:search', 'WikiController', 'index', 'wiki');
-            $this->route->addRoute('/project/:project_id/help/show/:search', 'WikiController', 'show', 'wiki');
-            $this->route->addRoute('/project/:project_id/help/create', 'WikiController', 'create', 'wiki');
-            $this->route->addRoute('/project/:project_id/help/page/:wiki_id/show', 'WikiController', 'detail', 'wiki');
-            $this->route->addRoute('/project/:project_id/help/page/:wiki_id/show', 'WikiController', 'detail', 'Wiki');
-            $this->route->addRoute('/help/page/:wiki_id/edit', 'WikiController', 'edit', 'wiki');
-            $this->route->addRoute('/project/:project_id/help/page/:wiki_id/attach', 'WikiFileController', 'create', 'wiki');
-            $this->route->addRoute('/project/:project_id/help/page/:wiki_id/delete', 'WikiController', 'confirm', 'wiki');
-            $this->route->addRoute('/project/:project_id/help/page/:wiki_id/editions', 'WikiController', 'editions', 'wiki');
-            $this->route->addRoute('/project/:project_id/help/page/:wiki_id/editions/restore/:edition', 'WikiController', 'confirm_restore', 'wiki');
-            $this->route->addRoute('/settings/wiki', 'ConfigController', 'show', 'Wiki');
-            $this->route->addRoute('/my-calendar', 'CalendarController', 'user', 'Calendar');
-            $this->route->addRoute('/settings/calendar', 'ConfigController', 'show', 'Calendar');
-            $this->route->addRoute('/project/:project_id/calendar/:search', 'CalendarController', 'project', 'Calendar');
-            $this->route->addRoute('/settings/custom-fields', 'MetadataTypesController', 'config', 'MetaMagik');
-            $this->route->addRoute('/settings/custom-fields/:key/edit', 'MetadataTypesController', 'editType', 'metaMagik');
-            $this->route->addRoute('/settings/custom-fields/:key/delete', 'MetadataTypesController', 'confirmTask', 'metaMagik');
-            $this->route->addRoute('/project/:project_id/metadata', 'MetadataController', 'project', 'metaMagik');
-            $this->route->addRoute('/project/:project_id/task/:task_id/metadata', 'MetadataController', 'task', 'metaMagik');
-            $this->route->addRoute('/user/:user_id/metadata', 'MetadataController', 'user', 'metaMagik');
-            $this->route->addRoute('/user/:user_id/metadata/:key/edit', 'MetadataController', 'editUser', 'metaMagik');
-            $this->route->addRoute('/user/:user_id/metadata/:key/delete', 'MetadataController', 'confirmUser', 'metaMagik');
-            $this->route->addRoute('/project/:project_id/analytics/metadata/total', 'AnalyticExtensionController', 'fieldTotalDistribution', 'metaMagik');
-            $this->route->addRoute('/project/:project_id/analytics/metadata/range', 'AnalyticExtensionController', 'fieldTotalDistributionRange', 'metaMagik');
-        }
-
-        // Helper
-        //  - Example: $this->helper->register('helperClassNameCamelCase', '\Kanboard\Plugin\PluginNameExampleStudlyCaps\Helper\HelperNameExampleStudlyCaps');
-        //  - Add each Helper in the 'use' section at the top of this file
+        // The helper owns the single route registry used by registration and presentation.
         $this->helper->register('cleanURLHelper', '\Kanboard\Plugin\URLCleaner\Helper\CleanURLHelper');
     }
 
     public function onStartup()
     {
-        Translator::load($this->languageModel->getCurrentLanguage(), __DIR__ . '/Locale');
+        // Load a complete English fallback before applying an available locale override.
+        Translator::load('en_US', __DIR__ . '/Locale');
+
+        $language = $this->languageModel->getCurrentLanguage();
+        if ($language !== 'en_US') {
+            Translator::load($language, __DIR__ . '/Locale');
+        }
+
+        if ($this->configModel->get('clean-url-options', 'disable') === 'enable' && ENABLE_URL_REWRITE) {
+            // Startup runs after every installed plugin has registered its own native routes.
+            $this->helper->cleanURLHelper->registerPluginRoutes();
+        }
     }
 
     public function getPluginName()
@@ -108,7 +54,7 @@ class Plugin extends Base
 
     public function getPluginDescription()
     {
-        return t('This simple tool extends the rewriting of browser URLs for your Kanboard application. Sanitize those long URLs automatically creating neat pretty easy to remember bookmarks. This plugin extends URLs from the core and from plugins. URL Rewriting must be correctly configured for this plugin to function properly.');
+        return t('Provide clean URL aliases for supported Kanboard plugins while showing the native clean routes already supplied by Kanboard. URL rewriting must be configured before aliases can be enabled.');
     }
 
     public function getPluginAuthor()
@@ -118,16 +64,13 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '2.0.0';
+        return '3.0.0';
     }
 
     public function getCompatibleVersion()
     {
-        // Examples:
-        // >=1.0.37
-        // <1.0.37
-        // <=1.0.37
-        return '>=1.2.20';
+        // The compatibility workflow and focused regression suite run against this baseline.
+        return '>=1.2.54';
     }
 
     public function getPluginHomepage()
