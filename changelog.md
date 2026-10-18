@@ -9,6 +9,7 @@ _(unreleased):_
 - Prevented URLCleaner from replacing native Kanboard or plugin routes
 - Restricted settings to application administrators and validated all settings submissions
 - Added responsive light and dark presentation with reduced-motion support
+- Bound plug-in colours to the selected Kanboard theme instead of the operating-system colour preference
 - Added complete British and American English translation catalogues
 - Added focused permission, route, presentation, translation and integration regression checks
 - Added PHP 8.2 to 8.5 compatibility automation

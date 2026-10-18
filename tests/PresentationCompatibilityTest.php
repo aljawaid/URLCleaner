@@ -12,7 +12,8 @@ $settingsTemplate = file_get_contents($root . '/Template/config/url-cleaner.php'
 $sidebarTemplate = file_get_contents($root . '/Template/config/sidebar.php');
 
 $presentationContracts = array(
-    '@media (prefers-color-scheme: dark)',
+    'var(--panel-background-color)',
+    'var(--button-primary-background-color)',
     '@media (max-width: 780px)',
     '@media (prefers-reduced-motion: reduce)',
     '--url-cleaner-transition: 180ms ease-in-out',
@@ -25,6 +26,12 @@ $presentationContracts = array(
 foreach ($presentationContracts as $contract) {
     urlCleanerAssertContains($contract, $stylesheet, 'The presentation contract is incomplete.');
 }
+
+urlCleanerAssertNotContains(
+    '@media (prefers-color-scheme: dark)',
+    $stylesheet,
+    'The selected Kanboard theme must not be overridden by the operating-system colour preference.'
+);
 
 urlCleanerAssertContains('fa-info-circle', $settingsTemplate, 'Complex route behavior must include an information popover.');
 urlCleanerAssertContains('tooltipHTML', $settingsTemplate, 'The information control must use Kanboard tooltip behavior.');

@@ -1,18 +1,18 @@
 /* URLCleaner settings presentation. Related test: tests/PresentationCompatibilityTest.php. */
 
 #URLCleanerPage {
-    --url-cleaner-accent: #007ac9;
-    --url-cleaner-accent-dark: #035f99;
-    --url-cleaner-accent-soft: #e8f4fb;
-    --url-cleaner-surface: #ffffff;
-    --url-cleaner-surface-raised: #f6f8fa;
-    --url-cleaner-border: #c7d4de;
-    --url-cleaner-text: #263238;
-    --url-cleaner-muted: #5f6f78;
-    --url-cleaner-success: #247a3d;
-    --url-cleaner-success-soft: #e9f7ed;
-    --url-cleaner-warning: #a65f00;
-    --url-cleaner-warning-soft: #fff4dc;
+    --url-cleaner-accent: var(--link-color-primary);
+    --url-cleaner-accent-dark: var(--link-color-hover);
+    --url-cleaner-accent-soft: var(--table-nth-background-color);
+    --url-cleaner-surface: var(--panel-background-color);
+    --url-cleaner-surface-raised: var(--table-header-background-color);
+    --url-cleaner-border: var(--panel-border-color);
+    --url-cleaner-text: var(--color-primary);
+    --url-cleaner-muted: var(--color-light);
+    --url-cleaner-success: var(--alert-color-success);
+    --url-cleaner-success-soft: var(--alert-background-color-success);
+    --url-cleaner-warning: var(--alert-color-default);
+    --url-cleaner-warning-soft: var(--alert-background-color-default);
     --url-cleaner-shadow: 0 4px 14px rgb(30, 55, 70, 0.08);
     --url-cleaner-radius: 6px;
     --url-cleaner-transition: 180ms ease-in-out;
@@ -166,10 +166,10 @@
     min-width: 24px;
     margin-left: 5px;
     padding: 1px 6px;
-    border: 1px solid var(--url-cleaner-accent-dark);
+    border: 1px solid var(--button-primary-border-color);
     border-radius: 999px;
-    background: var(--url-cleaner-accent);
-    color: #ffffff;
+    background: var(--button-primary-background-color);
+    color: var(--button-primary-color);
     font-size: 0.75em;
     line-height: 1.4;
     text-align: center;
@@ -210,9 +210,9 @@
 }
 
 #URLCleanerPage .form-actions .btn {
-    border-color: var(--url-cleaner-accent-dark);
-    background: linear-gradient(to bottom, var(--url-cleaner-accent), var(--url-cleaner-accent-dark));
-    color: #ffffff;
+    border-color: var(--button-primary-border-color);
+    background: var(--button-primary-background-color);
+    color: var(--button-primary-color);
     transition: background-color var(--url-cleaner-transition), box-shadow var(--url-cleaner-transition), transform var(--url-cleaner-transition);
 }
 
@@ -256,8 +256,8 @@
 }
 
 #URLCleanerPage .route-table th {
-    background: linear-gradient(to bottom, var(--url-cleaner-accent), var(--url-cleaner-accent-dark));
-    color: #ffffff;
+    background: var(--button-primary-background-color);
+    color: var(--button-primary-color);
     font-weight: bold;
 }
 
@@ -296,32 +296,6 @@
 
 #URLCleanerPage .url-cleaner-empty-state p {
     margin: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-    #URLCleanerPage {
-        --url-cleaner-accent: #39a9e8;
-        --url-cleaner-accent-dark: #8fd4f5;
-        --url-cleaner-accent-soft: #17394b;
-        --url-cleaner-surface: #20262b;
-        --url-cleaner-surface-raised: #293138;
-        --url-cleaner-border: #4a5963;
-        --url-cleaner-text: #eef4f7;
-        --url-cleaner-muted: #becbd2;
-        --url-cleaner-success: #6fd08a;
-        --url-cleaner-success-soft: #20382a;
-        --url-cleaner-warning: #f2b456;
-        --url-cleaner-warning-soft: #40331f;
-        --url-cleaner-shadow: 0 4px 16px rgb(0, 0, 0, 0.28);
-    }
-
-    #URLCleanerPage .form-actions .btn {
-        color: #101820;
-    }
-
-    #URLCleanerPage .route-table th {
-        color: #101820;
-    }
 }
 
 @media (max-width: 780px) {
