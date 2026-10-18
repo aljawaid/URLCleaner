@@ -8,7 +8,7 @@
 
 $plugin = $loadedPlugins['URLCleaner'];
 
-urlCleanerAssertSame('3.0.0', $plugin->getPluginVersion(), 'The production rebuild must expose version 3.0.0.');
+urlCleanerAssertSame('3.0.1', $plugin->getPluginVersion(), 'The production rebuild must expose version 3.0.1.');
 urlCleanerAssertSame('>=1.2.54', $plugin->getCompatibleVersion(), 'Compatibility must match the tested Kanboard baseline.');
 urlCleanerAssertSame('URLCleaner', $plugin->getPluginName(), 'Plugin identity must remain stable.');
 urlCleanerAssertTrue(

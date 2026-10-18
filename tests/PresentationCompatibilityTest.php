@@ -14,6 +14,7 @@ $sidebarTemplate = file_get_contents($root . '/Template/config/sidebar.php');
 $presentationContracts = array(
     'var(--panel-background-color)',
     'var(--button-primary-background-color)',
+    '--url-cleaner-muted: var(--color-primary)',
     '@media (max-width: 780px)',
     '@media (prefers-reduced-motion: reduce)',
     '--url-cleaner-transition: 180ms ease-in-out',

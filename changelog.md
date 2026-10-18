@@ -1,7 +1,13 @@
 # Changelog
 
 
-## v3.0.0
+## v3.0.1 - 2026-10-18
+
+_(most recent changes are listed on top):_
+- FIX: Use Kanboard's primary theme text colour for secondary URL-management text so the light theme clears normal-text contrast requirements
+
+
+## v3.0.0 - 2026-10-18
 
 _(unreleased):_
 - Rebuilt route discovery around Kanboard 1.2.54 native routes

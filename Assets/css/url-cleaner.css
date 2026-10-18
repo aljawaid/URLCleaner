@@ -8,7 +8,7 @@
     --url-cleaner-surface-raised: var(--table-header-background-color);
     --url-cleaner-border: var(--panel-border-color);
     --url-cleaner-text: var(--color-primary);
-    --url-cleaner-muted: var(--color-light);
+    --url-cleaner-muted: var(--color-primary);
     --url-cleaner-success: var(--alert-color-success);
     --url-cleaner-success-soft: var(--alert-background-color-success);
     --url-cleaner-warning: var(--alert-color-default);
