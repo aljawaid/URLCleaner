@@ -1,6 +1,12 @@
 # Changelog
 
 
+## v3.0.2 - 2026-10-18
+
+_(most recent changes are listed on top):_
+- FIX: Use Kanboard's high-contrast default control colours for route badges and actions, and the selected theme table colours for route headings
+
+
 ## v3.0.1 - 2026-10-18
 
 _(most recent changes are listed on top):_

@@ -166,10 +166,10 @@
     min-width: 24px;
     margin-left: 5px;
     padding: 1px 6px;
-    border: 1px solid var(--button-primary-border-color);
+    border: 1px solid var(--button-default-border-color);
     border-radius: 999px;
-    background: var(--button-primary-background-color);
-    color: var(--button-primary-color);
+    background: var(--button-default-background-color);
+    color: var(--button-default-color);
     font-size: 0.75em;
     line-height: 1.4;
     text-align: center;
@@ -210,9 +210,9 @@
 }
 
 #URLCleanerPage .form-actions .btn {
-    border-color: var(--button-primary-border-color);
-    background: var(--button-primary-background-color);
-    color: var(--button-primary-color);
+    border-color: var(--button-default-border-color);
+    background: var(--button-default-background-color);
+    color: var(--button-default-color);
     transition: background-color var(--url-cleaner-transition), box-shadow var(--url-cleaner-transition), transform var(--url-cleaner-transition);
 }
 
@@ -256,8 +256,8 @@
 }
 
 #URLCleanerPage .route-table th {
-    background: var(--button-primary-background-color);
-    color: var(--button-primary-color);
+    background: var(--table-header-background-color);
+    color: var(--color-primary);
     font-weight: bold;
 }
 
