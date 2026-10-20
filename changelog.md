@@ -1,32 +1,34 @@
 # Changelog
 
 
-## v3.0.2 - 2026-10-18
+## v3.0.3
 
 _(most recent changes are listed on top):_
-- FIX: Use Kanboard's high-contrast default control colours for route badges and actions, and the selected theme table colours for route headings
+- FIX: DEPENDENCY: Upgrade Super-Linter To 9.0.0
 
 
-## v3.0.1 - 2026-10-18
+## v3.0.2
 
 _(most recent changes are listed on top):_
-- FIX: Use Kanboard's primary theme text colour for secondary URL-management text so the light theme clears normal-text contrast requirements
+- FIX: BUG: Raise URLCleaner Control Contrast
 
 
-## v3.0.0 - 2026-10-18
+## v3.0.1
 
-_(unreleased):_
-- Rebuilt route discovery around Kanboard 1.2.54 native routes
-- Registered aliases only for installed supported plugins with available controller actions
-- Prevented URLCleaner from replacing native Kanboard or plugin routes
-- Restricted settings to application administrators and validated all settings submissions
-- Added responsive light and dark presentation with reduced-motion support
-- Bound plug-in colours to the selected Kanboard theme instead of the operating-system colour preference
-- Added complete British and American English translation catalogues
-- Added focused permission, route, presentation, translation and integration regression checks
-- Added PHP 8.2 to 8.5 compatibility automation
-- Removed the unnecessary repository secret scan from the feature-focused linter workflow
-- No database changes
+_(most recent changes are listed on top):_
+- FIX: BUG: Raise URLCleaner Text Contrast
+
+
+## v3.0.0
+
+_(most recent changes are listed on top):_
+- FIX: BUG: Respect Selected URLCleaner Theme
+- FIX: Update Compatibility Automation And Release Guidance
+- FIX: Improve URL Cleaner Presentation And Translations
+- FIX: Rebuild URL Route Management
+- FIX: Remove URLCleaner Stylelint Findings
+- FIX: BUG: Correct GitHub Actions PHP Boot Script
+- FIX: Verify Current Kanboard And PHP Compatibility
 
 
 ## v2.0

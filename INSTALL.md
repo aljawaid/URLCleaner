@@ -1,6 +1,6 @@
 # Plugin Installation
 
-> **Compatibility:** URLCleaner 3.0.0 requires Kanboard 1.2.54 or later and URL rewriting must be configured before plugin aliases can be enabled. The plugin has no database migrations.
+> **Compatibility:** URLCleaner 3.0.3 requires Kanboard 1.2.54 or later and URL rewriting must be configured before plugin aliases can be enabled. The plugin has no database migrations.
 
 - **Install via the [Kanboard](https://github.com/kanboard/kanboard "Kanboard - Kanban Project Management Software") Plugin Directory**
   - _Go to:_
